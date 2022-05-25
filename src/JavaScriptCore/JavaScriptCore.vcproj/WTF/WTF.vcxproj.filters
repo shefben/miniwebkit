@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win">
+      <UniqueIdentifier>{f506a238-c5c8-4d66-a6f5-16654fef8760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="unicode">
+      <UniqueIdentifier>{60b2cb59-2232-4be1-8a27-9b379eebc350}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="unicode\icu">
+      <UniqueIdentifier>{e03cd8f0-3497-4153-87da-7a2f6dedf09a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="text">
+      <UniqueIdentifier>{16827dbd-c8a7-494b-a173-013f9c0e7e10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dtoa">
+      <UniqueIdentifier>{430cfc73-51a8-492b-a501-91f688a0039a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="threads">
+      <UniqueIdentifier>{79e616c3-8a1f-4e30-a32f-aae6196d6760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="threads\win">
+      <UniqueIdentifier>{dc6cd445-95b0-4ef5-a559-5d62d9e4bf61}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\wtf\win\MainThreadWin.cpp">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\win\OwnPtrWin.cpp">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\unicode\UTF8.cpp">
+      <Filter>unicode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\unicode\icu\CollatorICU.cpp">
+      <Filter>unicode\icu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\text\AtomicString.cpp">
+      <Filter>text</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\text\CString.cpp">
+      <Filter>text</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\text\StringBuilder.cpp">
+      <Filter>text</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\text\StringImpl.cpp">
+      <Filter>text</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\text\StringStatics.cpp">
+      <Filter>text</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\text\WTFString.cpp">
+      <Filter>text</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\dtoa\bignum-dtoa.cc">
+      <Filter>dtoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\dtoa\bignum.cc">
+      <Filter>dtoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\dtoa\cached-powers.cc">
+      <Filter>dtoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\dtoa\diy-fp.cc">
+      <Filter>dtoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\dtoa\double-conversion.cc">
+      <Filter>dtoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\dtoa\fast-dtoa.cc">
+      <Filter>dtoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\dtoa\fixed-dtoa.cc">
+      <Filter>dtoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\dtoa\strtod.cc">
+      <Filter>dtoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\threads\win\BinarySemaphoreWin.cpp">
+      <Filter>threads\win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\threads\BinarySemaphore.cpp">
+      <Filter>threads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\Assertions.cpp" />
+    <ClCompile Include="..\..\wtf\BitVector.cpp" />
+    <ClCompile Include="..\..\wtf\ByteArray.cpp" />
+    <ClCompile Include="..\..\wtf\CryptographicallyRandomNumber.cpp" />
+    <ClCompile Include="..\..\wtf\CurrentTime.cpp" />
+    <ClCompile Include="..\..\wtf\DecimalNumber.cpp" />
+    <ClCompile Include="..\..\wtf\DynamicAnnotations.cpp" />
+    <ClCompile Include="..\..\wtf\dtoa.cpp" />
+    <ClCompile Include="..\..\wtf\FastMalloc.cpp" />
+    <ClCompile Include="..\..\wtf\HashTable.cpp" />
+    <ClCompile Include="..\..\wtf\MainThread.cpp" />
+    <ClCompile Include="..\..\wtf\MetaAllocator.cpp" />
+    <ClCompile Include="..\..\wtf\MD5.cpp" />
+    <ClCompile Include="..\..\wtf\NullPtr.cpp" />
+    <ClCompile Include="..\..\wtf\OSAllocatorWin.cpp" />
+    <ClCompile Include="..\..\wtf\OSRandomSource.cpp" />
+    <ClCompile Include="..\..\wtf\PageAllocationAligned.cpp" />
+    <ClCompile Include="..\..\wtf\PageBlock.cpp" />
+    <ClCompile Include="..\..\wtf\ParallelJobsGeneric.cpp" />
+    <ClCompile Include="..\..\wtf\RandomNumber.cpp" />
+    <ClCompile Include="..\..\wtf\RefCountedLeakCounter.cpp" />
+    <ClCompile Include="..\..\wtf\SHA1.cpp" />
+    <ClCompile Include="..\..\wtf\SizeLimits.cpp" />
+    <ClCompile Include="..\..\wtf\StackBounds.cpp" />
+    <ClCompile Include="..\..\wtf\StringExtras.cpp" />
+    <ClCompile Include="..\..\wtf\TCSystemAlloc.cpp" />
+    <ClCompile Include="..\..\wtf\Threading.cpp" />
+    <ClCompile Include="..\..\wtf\ThreadingWin.cpp" />
+    <ClCompile Include="..\..\wtf\ThreadSpecificWin.cpp" />
+    <ClCompile Include="..\..\wtf\TypeTraits.cpp" />
+    <ClCompile Include="..\..\wtf\WTFThreadData.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\wtf\unicode\CharacterNames.h">
+      <Filter>unicode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\unicode\Collator.h">
+      <Filter>unicode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\unicode\Unicode.h">
+      <Filter>unicode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\unicode\UnicodeMacrosFromICU.h">
+      <Filter>unicode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\unicode\UTF8.h">
+      <Filter>unicode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\unicode\icu\UnicodeIcu.h">
+      <Filter>unicode\icu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\text\AtomicString.h">
+      <Filter>text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\text\AtomicStringHash.h">
+      <Filter>text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\text\AtomicStringImpl.h">
+      <Filter>text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\text\CString.h">
+      <Filter>text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\text\StringBuffer.h">
+      <Filter>text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\text\StringBuilder.h">
+      <Filter>text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\text\StringConcatenate.h">
+      <Filter>text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\text\StringHash.h">
+      <Filter>text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\text\StringImpl.h">
+      <Filter>text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\text\StringOperators.h">
+      <Filter>text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\text\WTFString.h">
+      <Filter>text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\dtoa\bignum-dtoa.h">
+      <Filter>dtoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\dtoa\bignum.h">
+      <Filter>dtoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\dtoa\cached-powers.h">
+      <Filter>dtoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\dtoa\diy-fp.h">
+      <Filter>dtoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\dtoa\double-conversion.h">
+      <Filter>dtoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\dtoa\double.h">
+      <Filter>dtoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\dtoa\fast-dtoa.h">
+      <Filter>dtoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\dtoa\fixed-dtoa.h">
+      <Filter>dtoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\dtoa\strtod.h">
+      <Filter>dtoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\dtoa\utils.h">
+      <Filter>dtoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\threads\BinarySemaphore.h">
+      <Filter>threads</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\Alignment.h" />
+    <ClInclude Include="..\..\wtf\AlwaysInline.h" />
+    <ClInclude Include="..\..\wtf\ASCIICType.h" />
+    <ClInclude Include="..\..\wtf\Assertions.h" />
+    <ClInclude Include="..\..\wtf\Atomics.h" />
+    <ClInclude Include="..\..\wtf\AVLTree.h" />
+    <ClInclude Include="..\..\wtf\BitVector.h" />
+    <ClInclude Include="..\..\wtf\Bitmap.h" />
+    <ClInclude Include="..\..\wtf\BlockStack.h" />
+    <ClInclude Include="..\..\wtf\BloomFilter.h" />
+    <ClInclude Include="..\..\wtf\BoundsCheckedPointer.h" />
+    <ClInclude Include="..\..\wtf\BumpPointerAllocator.h" />
+    <ClInclude Include="..\..\wtf\ByteArray.h" />
+    <ClInclude Include="..\..\wtf\CheckedArithmetic.h" />
+    <ClInclude Include="..\..\wtf\Compiler.h" />
+    <ClInclude Include="..\..\wtf\Complex.h" />
+    <ClInclude Include="..\..\wtf\CrossThreadRefCounted.h" />
+    <ClInclude Include="..\..\wtf\CryptographicallyRandomNumber.h" />
+    <ClInclude Include="..\..\wtf\CurrentTime.h" />
+    <ClInclude Include="..\..\wtf\DecimalNumber.h" />
+    <ClInclude Include="..\..\wtf\Decoder.h" />
+    <ClInclude Include="..\..\wtf\Deque.h" />
+    <ClInclude Include="..\..\wtf\DisallowCType.h" />
+    <ClInclude Include="..\..\wtf\DoublyLinkedList.h" />
+    <ClInclude Include="..\..\wtf\DynamicAnnotations.h" />
+    <ClInclude Include="..\..\wtf\dtoa.h" />
+    <ClInclude Include="..\..\wtf\Encoder.h" />
+    <ClInclude Include="..\..\wtf\FastAllocBase.h" />
+    <ClInclude Include="..\..\wtf\FastMalloc.h" />
+    <ClInclude Include="..\..\wtf\FixedArray.h" />
+    <ClInclude Include="..\..\wtf\Forward.h" />
+    <ClInclude Include="..\..\wtf\GetPtr.h" />
+    <ClInclude Include="..\..\wtf\HashCountedSet.h" />
+    <ClInclude Include="..\..\wtf\HashFunctions.h" />
+    <ClInclude Include="..\..\wtf\HashIterators.h" />
+    <ClInclude Include="..\..\wtf\HashMap.h" />
+    <ClInclude Include="..\..\wtf\HashSet.h" />
+    <ClInclude Include="..\..\wtf\HashTable.h" />
+    <ClInclude Include="..\..\wtf\HashTraits.h" />
+    <ClInclude Include="..\..\wtf\HexNumber.h" />
+    <ClInclude Include="..\..\wtf\ListHashSet.h" />
+    <ClInclude Include="..\..\wtf\ListRefPtr.h" />
+    <ClInclude Include="..\..\wtf\Locker.h" />
+    <ClInclude Include="..\..\wtf\MainThread.h" />
+    <ClInclude Include="..\..\wtf\MallocZoneSupport.h" />
+    <ClInclude Include="..\..\wtf\MathExtras.h" />
+    <ClInclude Include="..\..\wtf\MetaAllocator.h" />
+    <ClInclude Include="..\..\wtf\MetaAllocatorHandle.h" />
+    <ClInclude Include="..\..\wtf\MD5.h" />
+    <ClInclude Include="..\..\wtf\MessageQueue.h" />
+    <ClInclude Include="..\..\wtf\Noncopyable.h" />
+    <ClInclude Include="..\..\wtf\NonCopyingSort.h" />
+    <ClInclude Include="..\..\wtf\NotFound.h" />
+    <ClInclude Include="..\..\wtf\NullPtr.h" />
+    <ClInclude Include="..\..\wtf\OSRandomSource.h" />
+    <ClInclude Include="..\..\wtf\OwnArrayPtr.h" />
+    <ClInclude Include="..\..\wtf\OwnFastMallocPtr.h" />
+    <ClInclude Include="..\..\wtf\OwnPtr.h" />
+    <ClInclude Include="..\..\wtf\OwnPtrCommon.h" />
+    <ClInclude Include="..\..\wtf\PackedIntVector.h" />
+    <ClInclude Include="..\..\wtf\PageAllocation.h" />
+    <ClInclude Include="..\..\wtf\PageAllocationAligned.h" />
+    <ClInclude Include="..\..\wtf\PageBlock.h" />
+    <ClInclude Include="..\..\wtf\PageReservation.h" />
+    <ClInclude Include="..\..\wtf\PassOwnArrayPtr.h" />
+    <ClInclude Include="..\..\wtf\PassOwnPtr.h" />
+    <ClInclude Include="..\..\wtf\PassRefPtr.h" />
+    <ClInclude Include="..\..\wtf\PassTraits.h" />
+    <ClInclude Include="..\..\wtf\ParallelJobs.h" />
+    <ClInclude Include="..\..\wtf\ParallelJobsGeneric.h" />
+    <ClInclude Include="..\..\wtf\ParallelJobsLibdispatch.h" />
+    <ClInclude Include="..\..\wtf\ParallelJobsOpenMP.h" />
+    <ClInclude Include="..\..\wtf\Platform.h" />
+    <ClInclude Include="..\..\wtf\PossiblyNull.h" />
+    <ClInclude Include="..\..\wtf\RandomNumber.h" />
+    <ClInclude Include="..\..\wtf\RandomNumberSeed.h" />
+    <ClInclude Include="..\..\wtf\RedBlackTree.h" />
+    <ClInclude Include="..\..\wtf\RefCounted.h" />
+    <ClInclude Include="..\..\wtf\RefCountedLeakCounter.h" />
+    <ClInclude Include="..\..\wtf\RefPtr.h" />
+    <ClInclude Include="..\..\wtf\RefPtrHashMap.h" />
+    <ClInclude Include="..\..\wtf\RetainPtr.h" />
+    <ClInclude Include="..\..\wtf\SegmentedVector.h" />
+    <ClInclude Include="..\..\wtf\SentinelLinkedList.h" />
+    <ClInclude Include="..\..\wtf\SHA1.h" />
+    <ClInclude Include="..\..\wtf\SinglyLinkedList.h" />
+    <ClInclude Include="..\..\wtf\StackBounds.h" />
+    <ClInclude Include="..\..\wtf\StaticConstructors.h" />
+    <ClInclude Include="..\..\wtf\StdLibExtras.h" />
+    <ClInclude Include="..\..\wtf\StringExtras.h" />
+    <ClInclude Include="..\..\wtf\StringHasher.h" />
+    <ClInclude Include="..\..\wtf\TCPackedCache.h" />
+    <ClInclude Include="..\..\wtf\TCPageMap.h" />
+    <ClInclude Include="..\..\wtf\TCSpinLock.h" />
+    <ClInclude Include="..\..\wtf\TCSystemAlloc.h" />
+    <ClInclude Include="..\..\wtf\Threading.h" />
+    <ClInclude Include="..\..\wtf\ThreadingPrimitives.h" />
+    <ClInclude Include="..\..\wtf\ThreadRestrictionVerifier.h" />
+    <ClInclude Include="..\..\wtf\ThreadSafeRefCounted.h" />
+    <ClInclude Include="..\..\wtf\ThreadSpecific.h" />
+    <ClInclude Include="..\..\wtf\TypeTraits.h" />
+    <ClInclude Include="..\..\wtf\UnusedParam.h" />
+    <ClInclude Include="..\..\wtf\ValueCheck.h" />
+    <ClInclude Include="..\..\wtf\Vector.h" />
+    <ClInclude Include="..\..\wtf\Vector3.h" />
+    <ClInclude Include="..\..\wtf\VectorTraits.h" />
+    <ClInclude Include="..\..\wtf\VMTags.h" />
+    <ClInclude Include="..\..\wtf\WTFThreadData.h" />
+  </ItemGroup>
+</Project>

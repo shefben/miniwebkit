@@ -1,0 +1,1130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="runtime">
+      <UniqueIdentifier>{b9ce1cdd-b35d-4b43-9fac-8576c944f756}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API">
+      <UniqueIdentifier>{b1471715-c888-4e4a-9dc6-8883fb749c89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="profiler">
+      <UniqueIdentifier>{63604da3-50a9-4b6c-8b1c-041527c1d855}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bytecode">
+      <UniqueIdentifier>{8a7216da-c939-460e-9ad7-f42c5ba2d736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="debugger">
+      <UniqueIdentifier>{2e27c30b-ea5d-4646-9b19-3c8f656a8938}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assembler">
+      <UniqueIdentifier>{f699e175-1f77-4648-a58c-21ea5d27c7eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dfg">
+      <UniqueIdentifier>{72370cfc-6d56-4383-b39b-345d5e4034bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="yarr">
+      <UniqueIdentifier>{8912dd9d-8981-486e-afc8-1fe769118de2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jit">
+      <UniqueIdentifier>{35891a7d-d877-463e-9066-4e3c9c59ec2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="interpreter">
+      <UniqueIdentifier>{e31c011e-a09c-4625-8b9b-7ee8bb5df34b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bytecompiler">
+      <UniqueIdentifier>{3752ed81-89ea-4076-9c92-c22ce8340478}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="parser">
+      <UniqueIdentifier>{6a2b5e99-7e6f-457b-85e7-dd1049886673}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Derived Sources">
+      <UniqueIdentifier>{41764835-8ffc-41d7-ae1e-670bcfad27bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="heap">
+      <UniqueIdentifier>{06636a24-e9b9-4b1d-bedf-6af6628910f9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\runtime\ArgList.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\Arguments.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\ArrayConstructor.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\ArrayPrototype.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\BooleanConstructor.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\BooleanObject.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\BooleanPrototype.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\CallData.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\CommonIdentifiers.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\Completion.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\ConstructData.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\DateConstructor.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\DateConversion.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\DateInstance.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wtf\DateMath.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\DatePrototype.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\Error.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\ErrorConstructor.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\ErrorInstance.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\ErrorPrototype.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\ExceptionHelpers.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\Executable.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\FunctionConstructor.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\FunctionPrototype.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\GCActivityCallback.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\GetterSetter.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\Heuristics.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\Identifier.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\InitializeThreading.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\InternalFunction.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSActivation.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSArray.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSByteArray.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSCell.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSFunction.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSBoundFunction.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSGlobalData.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSGlobalObject.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSGlobalObjectFunctions.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSLock.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSNotAnObject.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSObject.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSONObject.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSPropertyNameIterator.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSStaticScopeObject.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSString.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSValue.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSVariableObject.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSWrapperObject.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\LiteralParser.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\Lookup.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\MathObject.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\NativeErrorConstructor.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\NativeErrorPrototype.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\NumberConstructor.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\NumberObject.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\NumberPrototype.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\ObjectConstructor.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\ObjectPrototype.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\Operations.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\PropertyDescriptor.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\PropertyNameArray.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\PropertySlot.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\RegExp.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\RegExpCache.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\RegExpConstructor.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\RegExpObject.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\RegExpPrototype.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\ScopeChain.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\SamplingCounter.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\SmallStrings.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\StrictEvalActivation.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\StringConstructor.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\StringObject.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\StringPrototype.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\StringRecursionChecker.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\Structure.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\StructureChain.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\TimeoutChecker.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\UString.cpp">
+      <Filter>runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\runtime\JSAPIValueWrapper.cpp">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\API\JSBase.cpp">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\API\JSCallbackConstructor.cpp">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\API\JSCallbackFunction.cpp">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\API\JSCallbackObject.cpp">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\API\JSClassRef.cpp">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\API\JSContextRef.cpp">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\API\JSObjectRef.cpp">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\API\JSStringRef.cpp">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\API\JSStringRefBSTR.cpp">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\API\JSStringRefCF.cpp">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\API\JSValueRef.cpp">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\API\JSWeakObjectMapRefPrivate.cpp">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\API\OpaqueJSString.cpp">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\profiler\Profile.cpp">
+      <Filter>profiler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\profiler\ProfileGenerator.cpp">
+      <Filter>profiler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\profiler\ProfileNode.cpp">
+      <Filter>profiler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\profiler\Profiler.cpp">
+      <Filter>profiler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\bytecode\CodeBlock.cpp">
+      <Filter>bytecode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\bytecode\JumpTable.cpp">
+      <Filter>bytecode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\bytecode\Opcode.cpp">
+      <Filter>bytecode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\bytecode\PredictedType.cpp">
+      <Filter>bytecode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\bytecode\SamplingTool.cpp">
+      <Filter>bytecode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\bytecode\StructureStubInfo.cpp">
+      <Filter>bytecode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\bytecode\ValueProfile.cpp">
+      <Filter>bytecode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\debugger\Debugger.cpp">
+      <Filter>debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\debugger\DebuggerActivation.cpp">
+      <Filter>debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\debugger\DebuggerCallFrame.cpp">
+      <Filter>debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\yarr\YarrInterpreter.cpp">
+      <Filter>yarr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\yarr\YarrJIT.cpp">
+      <Filter>yarr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\yarr\YarrPattern.cpp">
+      <Filter>yarr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\yarr\YarrSyntaxChecker.cpp">
+      <Filter>yarr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jit\ExecutableAllocator.cpp">
+      <Filter>jit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jit\JIT.cpp">
+      <Filter>jit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jit\JITArithmetic.cpp">
+      <Filter>jit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jit\JITArithmetic32_64.cpp">
+      <Filter>jit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jit\JITCall.cpp">
+      <Filter>jit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jit\JITCall32_64.cpp">
+      <Filter>jit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jit\JITOpcodes.cpp">
+      <Filter>jit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jit\JITOpcodes32_64.cpp">
+      <Filter>jit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jit\JITPropertyAccess.cpp">
+      <Filter>jit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jit\JITPropertyAccess32_64.cpp">
+      <Filter>jit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jit\JITStubs.cpp">
+      <Filter>jit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jit\ThunkGenerators.cpp">
+      <Filter>jit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\interpreter\CallFrame.cpp">
+      <Filter>interpreter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\interpreter\Interpreter.cpp">
+      <Filter>interpreter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\interpreter\RegisterFile.cpp">
+      <Filter>interpreter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\bytecompiler\BytecodeGenerator.cpp">
+      <Filter>bytecompiler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\bytecompiler\NodesCodegen.cpp">
+      <Filter>bytecompiler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\parser\JSParser.cpp">
+      <Filter>parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\parser\Lexer.cpp">
+      <Filter>parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\parser\Nodes.cpp">
+      <Filter>parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\parser\Parser.cpp">
+      <Filter>parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\parser\ParserArena.cpp">
+      <Filter>parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\parser\SourceProviderCache.cpp">
+      <Filter>parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\heap\AllocationSpace.cpp">
+      <Filter>heap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\heap\ConservativeRoots.cpp">
+      <Filter>heap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\heap\MachineStackMarker.cpp">
+      <Filter>heap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\heap\MarkedBlock.cpp">
+      <Filter>heap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\heap\MarkedSpace.cpp">
+      <Filter>heap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\heap\MarkStack.cpp">
+      <Filter>heap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\heap\Heap.cpp">
+      <Filter>heap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\heap\HandleHeap.cpp">
+      <Filter>heap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\heap\HandleStack.cpp">
+      <Filter>heap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\heap\JettisonedCodeBlocks.cpp">
+      <Filter>heap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\heap\VTableSpectrum.cpp">
+      <Filter>heap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\heap\WriteBarrierSupport.cpp">
+      <Filter>heap</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\runtime\ArgList.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\Arguments.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\ArrayConstructor.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\ArrayPrototype.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\BatchedTransitionOptimizer.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\BooleanConstructor.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\BooleanObject.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\BooleanPrototype.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\CallData.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\ClassInfo.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\CommonIdentifiers.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\Completion.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\ConstructData.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\DateConstructor.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\DateConversion.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\DateInstance.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\DateInstanceCache.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wtf\DateMath.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\DatePrototype.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\Error.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\ErrorConstructor.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\ErrorInstance.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\ErrorPrototype.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\interpreter\ExceptionHelpers.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\Executable.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\FunctionConstructor.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\FunctionPrototype.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\GCActivityCallback.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\GetterSetter.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\Heuristics.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\Identifier.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\InitializeThreading.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\InternalFunction.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSActivation.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSArray.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSByteArray.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSCell.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSFunction.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSBoundFunction.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSGlobalData.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSGlobalObject.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSGlobalObjectFunctions.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSLock.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSNotAnObject.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSObject.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSONObject.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSPropertyNameIterator.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSStaticScopeObject.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSString.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSType.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSTypeInfo.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSValue.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSValueInlineMethods.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSVariableObject.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSWrapperObject.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\LiteralParser.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\Lookup.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\MathObject.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\NativeErrorConstructor.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\NativeErrorPrototype.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\NumberConstructor.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\NumberObject.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\NumberPrototype.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\NumericStrings.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\ObjectConstructor.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\ObjectPrototype.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\Operations.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\PropertyDescriptor.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\PropertyMapHashTable.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\PropertyNameArray.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\PropertySlot.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\Protect.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\RegExp.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\RegExpCache.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\RegExpConstructor.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\RegExpKey.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\RegExpMatchesArray.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\RegExpObject.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\RegExpPrototype.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\ScopeChain.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\ScopeChainMark.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\SamplingCounter.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\SmallStrings.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\StrictEvalActivation.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\StringConstructor.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\StringObject.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\StringPrototype.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\StringRecursionChecker.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\Structure.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\StructureChain.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\StructureTransitionTable.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\SymbolTable.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\Terminator.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\TimeoutChecker.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\UString.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\UStringBuilder.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\UStringConcatenate.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\UStringImpl.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\WeakGCMap.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\WeakRandom.h">
+      <Filter>runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\APICast.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JavaScript.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JavaScriptCore.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\JSAPIValueWrapper.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JSBase.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JSBasePrivate.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JSCallbackConstructor.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JSCallbackFunction.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JSCallbackObject.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JSCallbackObjectFunctions.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JSClassRef.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JSContextRef.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JSContextRefPrivate.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JSObjectRef.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JSRetainPtr.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JSStringRef.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JSStringRefBSTR.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JSStringRefCF.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JSValueRef.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JSWeakObjectMapRefInternal.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\JSWeakObjectMapRefPrivate.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\OpaqueJSString.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\API\WebKitAvailability.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\profiler\CallIdentifier.h">
+      <Filter>profiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\profiler\Profile.h">
+      <Filter>profiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\profiler\ProfileGenerator.h">
+      <Filter>profiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\profiler\ProfileNode.h">
+      <Filter>profiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\profiler\Profiler.h">
+      <Filter>profiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\bytecode\CodeBlock.h">
+      <Filter>bytecode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\bytecode\CodeOrigin.h">
+      <Filter>bytecode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\bytecode\EvalCodeCache.h">
+      <Filter>bytecode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\bytecode\Instruction.h">
+      <Filter>bytecode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\bytecode\JumpTable.h">
+      <Filter>bytecode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\bytecode\Opcode.h">
+      <Filter>bytecode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\bytecode\PredictedType.h">
+      <Filter>bytecode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\bytecode\SamplingTool.h">
+      <Filter>bytecode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\bytecode\StructureStubInfo.h">
+      <Filter>bytecode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\bytecode\ValueProfile.h">
+      <Filter>bytecode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\debugger\Debugger.h">
+      <Filter>debugger</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\debugger\DebuggerActivation.h">
+      <Filter>debugger</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\debugger\DebuggerCallFrame.h">
+      <Filter>debugger</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\assembler\AbstractMacroAssembler.h">
+      <Filter>assembler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\assembler\AssemblerBuffer.h">
+      <Filter>assembler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\assembler\CodeLocation.h">
+      <Filter>assembler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\assembler\LinkBuffer.h">
+      <Filter>assembler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\assembler\MacroAssembler.h">
+      <Filter>assembler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\assembler\MacroAssemblerX86.h">
+      <Filter>assembler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\assembler\MacroAssemblerX86Common.h">
+      <Filter>assembler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\assembler\RepatchBuffer.h">
+      <Filter>assembler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\assembler\X86Assembler.h">
+      <Filter>assembler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dfg\DFGDriver.h">
+      <Filter>dfg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dfg\DFGIntrinsic.h">
+      <Filter>dfg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dfg\DFGOSREntry.h">
+      <Filter>dfg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\yarr\Yarr.h">
+      <Filter>yarr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\yarr\YarrInterpreter.h">
+      <Filter>yarr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\yarr\YarrJIT.h">
+      <Filter>yarr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\yarr\YarrParser.h">
+      <Filter>yarr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\yarr\YarrPattern.h">
+      <Filter>yarr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\yarr\YarrSyntaxChecker.h">
+      <Filter>yarr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jit\ExecutableAllocator.h">
+      <Filter>jit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jit\JIT.h">
+      <Filter>jit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jit\JITCode.h">
+      <Filter>jit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jit\JITInlineMethods.h">
+      <Filter>jit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jit\JITStubCall.h">
+      <Filter>jit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jit\JITStubs.h">
+      <Filter>jit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jit\JSInterfaceJIT.h">
+      <Filter>jit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jit\SpecializedThunkJIT.h">
+      <Filter>jit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jit\ThunkGenerators.h">
+      <Filter>jit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\interpreter\CachedCall.h">
+      <Filter>interpreter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\interpreter\CallFrame.h">
+      <Filter>interpreter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\interpreter\CallFrameClosure.h">
+      <Filter>interpreter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\interpreter\Interpreter.h">
+      <Filter>interpreter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\interpreter\Register.h">
+      <Filter>interpreter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\interpreter\RegisterFile.h">
+      <Filter>interpreter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\bytecompiler\BytecodeGenerator.h">
+      <Filter>bytecompiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\bytecompiler\Label.h">
+      <Filter>bytecompiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\bytecompiler\LabelScope.h">
+      <Filter>bytecompiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\bytecompiler\RegisterID.h">
+      <Filter>bytecompiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\parser\ASTBuilder.h">
+      <Filter>parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\parser\JSParser.h">
+      <Filter>parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\parser\Lexer.h">
+      <Filter>parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\parser\NodeConstructors.h">
+      <Filter>parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\parser\NodeInfo.h">
+      <Filter>parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\parser\Nodes.h">
+      <Filter>parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\parser\Parser.h">
+      <Filter>parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\parser\ParserArena.h">
+      <Filter>parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\parser\ResultType.h">
+      <Filter>parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\parser\SourceCode.h">
+      <Filter>parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\parser\SourceProvider.h">
+      <Filter>parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\parser\SourceProviderCache.h">
+      <Filter>parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\parser\SourceProviderCacheItem.h">
+      <Filter>parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\parser\SyntaxChecker.h">
+      <Filter>parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\AllocationSpace.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\ConservativeRoots.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\MachineStackMarker.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\MarkedBlock.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\MarkedSpace.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\MarkStack.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\HeapRootVisitor.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\Heap.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\Strong.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\StrongInlines.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\Handle.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\HandleHeap.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\HandleStack.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\JettisonedCodeBlocks.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\Local.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\LocalScope.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\VTableSpectrum.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\Weak.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\heap\WriteBarrierSupport.h">
+      <Filter>heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\config.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="JavaScriptCore.def" />
+    <None Include="JavaScriptCore_debug.def" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,4 @@
+/build
+*.lut.h
+*.log
+.xmake
