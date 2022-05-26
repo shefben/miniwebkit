@@ -86,16 +86,17 @@ void wkeConfigCookieFilePath(const char* path)
     WebCore::ResourceHandleManager::sharedInstance()->setCookieJarFileName(path);
 }
 
-void wkeConfigure(const wkeSettings* settings)
+void wkeConfigure(wke::wkeSettings* settings)
 {
     if (settings->mask & WKE_SETTING_PROXY)
-        wkeConfigProxy(&settings->proxy);
+        wkeConfigProxy(settings->proxy);
 
     if (settings->mask & WKE_SETTING_COOKIE_FILE_PATH)
         wkeConfigCookieFilePath(settings->cookieFilePath);
+    wke::wkeSettingsManeger::SetInstance(settings);
 }
 
-void wkeInitializeEx(const wkeSettings* settings)
+void wkeInitializeEx(wke::wkeSettings* settings)
 {
     wkeInitialize();
     wkeConfigure(settings);

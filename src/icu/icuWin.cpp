@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <wchar.h>
 
-// #define USE_ICU_WIN 1
+#define USE_ICU_WIN 1
 
 #if USE_ICU_WIN
 
@@ -2020,24 +2020,101 @@ udat_format(const    UDateFormat*    format,
     return -1;
 }
 
+void ucal_setTimeZone(UCalendar*    cal,
+const UChar*  zoneID,
+int32_t       len,
+UErrorCode*   status) {
+}
+
+UDate udat_parse(const    UDateFormat*    format,
+const    UChar*          text,
+int32_t         textLength,
+int32_t         *parsePos,
+UErrorCode      *status) {
+    return 0;
+}
+
+void udat_parseCalendar(const    UDateFormat*    format,
+UCalendar*      calendar,
+const    UChar*          text,
+int32_t         textLength,
+int32_t         *parsePos,
+UErrorCode      *status) {
+}
+
+
+UBool udat_isLenient(const UDateFormat* fmt) {
+    return FALSE;
+}
+
+void udat_setLenient(
+    UDateFormat* fmt,
+    UBool isLenient) {
+}
+
+const UCalendar* udat_getCalendar(const UDateFormat* fmt) {
+    return nullptr;
+}
+
+
+void udat_setCalendar(
+UDateFormat* fmt,
+const UCalendar*calendarToSet) {
+}
+
+UDate udat_get2DigitYearStart(const   UDateFormat     *fmt,
+UErrorCode      *status) {
+    return 0;
+}
+
+void udat_set2DigitYearStart(
+UDateFormat *fmt,
+UDate d,
+UErrorCode *status) {
+}
+
+int32_t udat_toPattern(const   UDateFormat     *fmt,
+UBool          localized,
+UChar           *result,
+int32_t         resultLength,
+UErrorCode      *status) {
+    return 0;
+}
+void udat_applyPattern(UDateFormat     *format,
+UBool          localized,
+const   UChar           *pattern,
+int32_t         patternLength) {
+
+}
+int32_t udat_getSymbols(const   UDateFormat             *fmt,
+UDateFormatSymbolType   type,
+int32_t                 symbolIndex,
+UChar                   *result,
+int32_t                 resultLength,
+UErrorCode              *status) {
+    return 0;
+}
+
+int32_t udat_countSymbols(const    UDateFormat                *fmt,
+UDateFormatSymbolType    type) {
+    return 0;
+}
+
+void udat_setSymbols(    UDateFormat             *format,
+UDateFormatSymbolType   type,
+int32_t                 symbolIndex,
+UChar                   *value,
+int32_t                 valueLength,
+UErrorCode              *status) {
+    
+}
+
 #else
-
-#ifdef _DEBUG
-#pragma comment(lib, "icuind.lib")
-#pragma comment(lib, "icuucd.lib")
-#else
-#pragma comment(lib, "icuin.lib")
-#pragma comment(lib, "icuuc.lib")
-#endif
-
-
 void icuwin_init()
 {
 }
-
 const char* icuwin_getDefaultEncoding()
 {
     return "";
 }
-
 #endif

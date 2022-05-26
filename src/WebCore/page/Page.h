@@ -119,6 +119,7 @@ namespace WebCore {
             RefPtr<BackForwardList> backForwardClient;
             SpeechInputClient* speechInputClient;
             MediaStreamClient* mediaStreamClient;
+            float pageScaleFactor;
         };
 
         Page(PageClients&);

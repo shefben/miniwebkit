@@ -19,6 +19,9 @@ public:
     virtual void destroy() = 0;
     virtual void resize(unsigned int w, unsigned int h) = 0;
     virtual void render(wkeWebView* webView) = 0;
+    static UINT dpi()  {
+        return GetDpiForSystem();
+    };
 };
 
 #endif

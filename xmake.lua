@@ -9,7 +9,18 @@ add_cxxflags("/GS", {force = true})
 
 add_linkdirs("./3rd/lib/x86")
 set_arch("x86")
-add_defines("WIN32", "WTF_USE_JSVALUE32_64", "UCHAR_TYPE=wchar_t", "XP_CPLUSPLUS", "DEPLOYMENT_TARGET_WINDOWS")
+add_defines(
+    "WIN32",
+    "WTF_USE_JSVALUE32_64",
+    "UCHAR_TYPE=wchar_t",
+    "U_SIZEOF_WCHAR_T=2",
+    "USE_ICU_WIN",
+    "XP_CPLUSPLUS",
+    "DEPLOYMENT_TARGET_WINDOWS",
+    "WINVER=0x0A00",
+    "_WIN32_WINNT=0x0A00",
+    "_WIN32_IE=0x0A00"
+)
 
 target("zlib")
     set_kind("static")
@@ -168,14 +179,14 @@ target("icu")
     add_cxxflags("/utf-8", {force = true})
     add_includedirs("./3rd/include")
     add_files(
-        "./src/icu/icuWin.cpp",
-        "./src/icu/open.c"
+        "./src/icu/icuWin.cpp"
     )
     add_defines("U_SIZEOF_WCHAR_T=2", "U_STATIC_IMPLEMENTATION")
     add_links("user32", "ole32", "cflite")
 
 target("cflite")
     set_kind("static")
+    -- set_kind("shared")
     set_pcxxheader("./3rd/opencflite-476.19.0/stdafx.h")
     add_files("./3rd/opencflite-476.19.0/stdafx.c")
     add_cxxflags("/D UNICODE")
@@ -264,22 +275,19 @@ target("cflite")
         "WIN32_LEAN_AND_MEAN",
         "__STDC_LIMIT_MACROS",
         "CF_BUILDING_CF",
-        "_WIN32_WINNT=0x0500",
-        "WINVER=0x0500",
         "_CRT_SECURE_NO_DEPRECATE",
         "_SCL_SECURE_NO_DEPRECATE",
         "_BUILD_NET_FOUNDATION_",
         "CF_EXPORT=extern"
     )
     add_includedirs("./3rd/include")
+    add_deps("icu")
     add_links(
         "user32",
         "ws2_32",
         "rpcrt4",
         "advapi32",
-        "shell32",
-        "icuin",
-        "icuuc"
+        "shell32"
     )
 
 target("wtf")
@@ -295,9 +303,6 @@ target("wtf")
         "NDEBUG",
         "WIN32",
         "_WINDOWS",
-        "WINVER=0x502",
-        "_WIN32_WINNT=0x502",
-        "_WIN32_IE=0x603",
         "_CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES=1",
         "_HAS_EXCEPTIONS=0",
         "BUILDING_WTF",
@@ -439,9 +444,6 @@ target("JavaScriptCore")
         "NDEBUG",
         "WIN32",
         "_WINDOWS",
-        "WINVER=0x502",
-        "_WIN32_WINNT=0x502",
-        "_WIN32_IE=0x603",
         "_CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES=1",
         "_HAS_EXCEPTIONS=0",
         "BUILDING_JavaScriptCore",
@@ -1812,9 +1814,6 @@ target("WebCore")
         "CAIRO_WIN32_STATIC_BUILD",
         "WIN32",
         "_WINDOWS",
-        "WINVER=0x502",
-        "_WIN32_WINNT=0x502",
-        "_WIN32_IE=0x603",
         "_CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES=1",
         "_HAS_EXCEPTIONS=0",
         "BUILDING_WebCore",
@@ -1878,7 +1877,7 @@ target("wke")
     set_pcxxheader("./src/wke/stdafx.h")
     add_files("./src/wke/stdafx.cpp")
     for _, f in ipairs({
-        "icuWin.cpp",
+        "setting_call.cpp",
         "jsBind.cpp",
         "wke.cpp",
         "wkeChromeClient.cpp",
@@ -1905,9 +1904,6 @@ target("wke")
         "CAIRO_WIN32_STATIC_BUILD",
         "WIN32",
         "_WINDOWS",
-        "WINVER=0x502",
-        "_WIN32_WINNT=0x502",
-        "_WIN32_IE=0x603",
         "_CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES=1",
         "_HAS_EXCEPTIONS=0",
         "BUILDING_wke",
@@ -1940,6 +1936,8 @@ target("wke")
     }) do
         add_includedirs("./build/"..dir)
     end
+
+    add_includedirs("./src/icu")
     
     for _, dir in ipairs({
         "",
@@ -1956,7 +1954,7 @@ target("wke")
     }) do
         add_includedirs("./3rd/".. dir)
     end
-    add_deps("WebCore")--, "icu")
+    add_deps("WebCore")
     add_links(
         "comdlg32",
         "imm32",
@@ -1980,9 +1978,10 @@ target("wkeBrowser")
         "NDEBUG",
         "_WINDOWS",
         "UNICODE",
-        "_UNICODE"
+        "_UNICODE",
+        "_COLSOLE"
     )
-    add_ldflags("/SUBSYSTEM:WINDOWS", {force = true})
+    -- add_ldflags("/SUBSYSTEM:WINDOWS", {force = true})
     add_links("imm32", "shell32", "ole32", "advapi32", "user32", "ws2_32")
     
         -- "user32",

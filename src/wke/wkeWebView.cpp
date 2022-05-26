@@ -762,7 +762,9 @@ namespace wke
         }
     }
 
+#ifndef SPI_GETWHEELSCROLLCHARS
 #define SPI_GETWHEELSCROLLCHARS (0x006C)
+#endif
     static int horizontalScrollChars()
     {
         static ULONG scrollChars;
@@ -1140,7 +1142,16 @@ namespace wke
     {
         return m_awake;
     }
+    void CWebView::setPageScaleFactor(float scale)
+    {
+        WebCore::LayoutPoint* point = new WebCore::LayoutPoint();
+        m_mainFrame->setPageScaleFactor(scale, *point);
+    }
 
+    float CWebView::pageScaleFactor()
+    {
+        return m_mainFrame->pageScaleFactor();
+    }
     void CWebView::setZoomFactor(float factor)
     {
         m_mainFrame->setPageZoomFactor(factor);
@@ -1404,6 +1415,10 @@ namespace wke
         pageClients.inspectorClient = new InspectorClient;
         pageClients.editorClient = new EditorClient;
         pageClients.dragClient = new DragClient;
+        auto _settings = wke::wkeSettingsManeger::Instance();
+        if (_settings != nullptr) {
+            pageClients.pageScaleFactor = _settings->pageScaleFactor;
+        }
 
         m_page = adoptPtr(new WebCore::Page(pageClients));
         WebCore::Settings* settings = m_page->settings();

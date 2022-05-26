@@ -10,6 +10,8 @@
 #ifndef WKE_H
 #define WKE_H
 
+#include "setting_call.h"
+
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -115,42 +117,6 @@ typedef __int64 wkeJSValue;
 
 
 
-typedef enum
-{
-    WKE_PROXY_NONE,
-    WKE_PROXY_HTTP,
-    WKE_PROXY_SOCKS4,
-    WKE_PROXY_SOCKS4A,
-    WKE_PROXY_SOCKS5,
-    WKE_PROXY_SOCKS5HOSTNAME
-
-} wkeProxyType;
-
-typedef struct 
-{
-   wkeProxyType type;
-   char hostname[100];
-   unsigned short port;
-   char username[50];
-   char password[50];
-
-} wkeProxy;
-
-enum wkeSettingMask 
-{
-    WKE_SETTING_PROXY = 1,
-    WKE_SETTING_COOKIE_FILE_PATH = 1<<1
-};
-
-typedef struct 
-{
-    wkeProxy proxy;
-    char cookieFilePath[1024];
-    unsigned int mask;
-
-} wkeSettings;
-
-
 /*
  *c interface
  *----------------------------------------------------------------------------------------------------------
@@ -163,8 +129,8 @@ extern "C"
 #endif
 
 WKE_API void        WKE_CALL wkeInitialize();
-WKE_API void        WKE_CALL wkeInitializeEx(const wkeSettings* settings);
-WKE_API void        WKE_CALL wkeConfigure(const wkeSettings* settings);
+WKE_API void        WKE_CALL wkeInitializeEx(wke::wkeSettings* settings);
+WKE_API void        WKE_CALL wkeConfigure(wke::wkeSettings* settings);
 
 WKE_API void        WKE_CALL wkeFinalize();
 WKE_API void        WKE_CALL wkeUpdate();

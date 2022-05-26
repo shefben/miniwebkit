@@ -163,7 +163,7 @@ wkeWebView* onCreateView(wkeWebView* webView, void* param, const wkeNewViewInfo*
     else
     {
         wkeWebView* newWindow = wkeCreateWebWindow(WKE_WINDOW_TYPE_POPUP, NULL, info->x, info->y, info->width, info->height);
-        wkeShowWindow(newWindow, SW_SHOW);
+        wkeShowWindow(newWindow, SW_SHOW > 0);
         return newWindow;
     }
 
@@ -376,16 +376,9 @@ protected:
 protected:
 	int m_value;
 };
-int APIENTRY _tWinMain(
-    HINSTANCE hInstance,
-    HINSTANCE hPrevInstance,
-    LPTSTR lpCmdLine,
-    int nCmdShow)
-{
-	UNREFERENCED_PARAMETER(hPrevInstance);
-	UNREFERENCED_PARAMETER(lpCmdLine);
 
-	LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
+int uimain(HINSTANCE hInstance, int nCmdShow) {
+    LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
 	LoadString(hInstance, IDC_WKEBROWSER, szWindowClass, MAX_LOADSTRING);
 	MyRegisterClass(hInstance);
 
@@ -396,8 +389,7 @@ int APIENTRY _tWinMain(
     wkeInitialize();
     t1.Start();
 
-    wkeSettings settings;
-    memset(&settings, 0, sizeof(settings));
+    wke::wkeSettings* settings = new wke::wkeSettings();
 
 #if defined(WKE_BROWSER_USE_LOCAL_PROXY)
     settings.proxy.type = WKE_PROXY_SOCKS5;
@@ -405,8 +397,12 @@ int APIENTRY _tWinMain(
     settings.proxy.port = 1080;
     settings.mask |= WKE_SETTING_PROXY;
 #endif
+    auto dpi = CRender::dpi();
+    if (dpi > 96) {
+        settings->pageScaleFactor = (float)dpi / 96.0f;
+    }
     //wkeInitializeEx(&settings);
-    wkeConfigure(&settings);
+    wkeConfigure(settings);
 
     t1.End();
 
@@ -441,7 +437,7 @@ int APIENTRY _tWinMain(
     if (argc > 1)
         wkeLoadW(g_webView, argv[1]);
     else
-        wkeLoadHTMLW(g_webView, L"<p style=\"background-color: #00FF00\">Testing</p><img id=\"webkit logo\" src=\"http://webkit.org/images/icon-gold.png\" alt=\"Face\"><div style=\"border: solid blue; background: white;\" contenteditable=\"true\">div with blue border</div><ul><li>foo<li>bar<li>baz</ul>");
+        wkeLoadHTMLW(g_webView, L"<html><head></head><body><p style=\"background-color: #00FF00\">Testing</p><img id=\"webkit logo\" src=\"http://webkit.org/images/icon-gold.png\" alt=\"Face\"><div style=\"border: solid blue; background: white;\" contenteditable=\"true\">div with blue border</div><ul><li>foo<li>bar<li>baz</ul></body></html>");
     LocalFree(argv);
     t3.End();
 
@@ -473,7 +469,7 @@ int APIENTRY _tWinMain(
     SetWindowLongPtr(hURLBarWnd, GWL_WNDPROC, reinterpret_cast<LONG_PTR>(UrlEditProc));
     SetFocus(hURLBarWnd);
 
-    g_render = CRender::create(CRender::GDI_RENDER);
+    g_render = CRender::create(CRender::D3D_RENDER);
     g_render->init(hViewWindow);
 
 
@@ -509,6 +505,21 @@ int APIENTRY _tWinMain(
         fclose(g_consoleLog);
 
 	return (int) msg.wParam;
+}
+
+#ifdef _CONSLOE
+int _tmain() {
+    HINSTANCE hInstance = GetModuleHandle(NULL);
+    int nCmdShow = 0;
+#else
+int APIENTRY _tWinMain(HINSTANCE hInstance,
+    HINSTANCE hPrevInstance,
+    LPTSTR lpCmdLine,
+    int nCmdShow) {
+	UNREFERENCED_PARAMETER(hPrevInstance);
+	UNREFERENCED_PARAMETER(lpCmdLine);
+#endif
+	return uimain(hInstance, nCmdShow);
 }
 
 ATOM MyRegisterClass(HINSTANCE hInstance)
