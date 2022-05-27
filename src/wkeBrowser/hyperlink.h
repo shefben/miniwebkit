@@ -25,13 +25,14 @@ public:
         CHyperlink* hl = new CHyperlink;
         hl->setCommand(command);
         hl->setText(txt);
-
-        SetWindowLong(hWnd, GWL_USERDATA, (LONG)hl);
+        // SetWindowLong(hWnd, GWL_USERDATA, (LONG)hl);
+        SetWindowLong(hWnd, GWLP_USERDATA, (LONG)hl);
     }
 
     static int WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
-        CHyperlink* hl = (CHyperlink*)GetWindowLong(hWnd, GWL_USERDATA);
+        // CHyperlink* hl = (CHyperlink*)GetWindowLong(hWnd, GWL_USERDATA);
+        CHyperlink* hl = (CHyperlink*)GetWindowLong(hWnd, GWLP_USERDATA);
         if (hl == NULL)
             return DefWindowProc(hWnd, uMsg, wParam, lParam);
 
@@ -70,7 +71,8 @@ public:
 
         case WM_DESTROY:
             delete hl;
-            SetWindowLong(hWnd, GWL_USERDATA, 0);
+            // SetWindowLong(hWnd, GWL_USERDATA, 0);
+            SetWindowLong(hWnd, GWLP_USERDATA, 0);
             break;
 
         case WM_MOUSEMOVE:

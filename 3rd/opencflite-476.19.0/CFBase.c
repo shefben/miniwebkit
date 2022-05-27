@@ -1049,8 +1049,9 @@ __asm__ (
 
 #if defined(__i386__) || defined(__x86_64__)
 #if defined(_MSC_VER)
+#include <intrin.h>
 void __HALT() {
-    __asm int 3;
+    __halt();
 }
 #else
 __asm__ (

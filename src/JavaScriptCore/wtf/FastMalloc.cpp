@@ -2474,7 +2474,7 @@ class TCMalloc_Central_FreeListPadded : public TCMalloc_Central_FreeList {
 
 // Central cache -- a collection of free-lists, one per size-class.
 // We have a separate lock per free-list to reduce contention.
-static TCMalloc_Central_FreeListPadded central_cache[kNumClasses];
+static TCMalloc_Central_FreeListPadded* central_cache = (TCMalloc_Central_FreeListPadded*)malloc(sizeof(TCMalloc_Central_FreeListPadded) * kNumClasses);//kNumClasses];
 
 // Page-level allocator
 static AllocAlignmentInteger pageheap_memory[(sizeof(TCMalloc_PageHeap) + sizeof(AllocAlignmentInteger) - 1) / sizeof(AllocAlignmentInteger)];

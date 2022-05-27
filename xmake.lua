@@ -6,7 +6,7 @@ add_cxxflags("/wd4838", {force = true})
 add_cxxflags("/GS", {force = true})
 
 
-set_arch("x86")
+-- set_arch("x86")
 add_defines(
     "WIN32",
     "WTF_USE_JSVALUE32_64",
@@ -19,6 +19,11 @@ add_defines(
     "_WIN32_WINNT=0x0A00",
     "_WIN32_IE=0x0A00"
 )
+if is_arch("i386") then
+    add_defines("__i386__")
+else
+    add_defines("__x86_64__")
+end
 
 target("zlib")
     set_kind("static")
@@ -82,6 +87,23 @@ target("libssl")
             }
         )
         io.writefile("libssl.rc", stdout)
+        local opt = {
+            envs = {ASM="masm"}
+        }
+        os.execv(
+            "perl",
+            {
+                "ms/uplink-x86_64.pl",
+                "auto",
+                "-I.",
+                "-Iinclude",
+                "-Iproviders/common/include",
+                "-Iproviders/implementations/include",
+                "-DOPENSSL_USE_APPLINK",
+                "crypto/uplink-x86_64.asm"
+            },
+            opt
+        )
         os.cd("-")
     end)
     for _, f in ipairs({
@@ -156,6 +178,7 @@ target("libssl")
         add_defines("PLATFORM=\"VC-WIN32\"")
     else
         add_defines("PLATFORM=\"VC-WIN64\"")
+        add_files(opensslDir.."crypto/uplink-x86_64.asm")
     end
     for _, f in ipairs({
         "crypto/dllmain.c",
@@ -260,6 +283,7 @@ target("libssl")
     add_includedirs("./3rd/zlib")
     add_deps("zlib")
     add_links("ws2_32", "advapi32", "user32")
+    set_toolset("as", "nasm")
 
 target("libcurl")
     set_kind("static")
@@ -462,7 +486,7 @@ target("libxslt")
         "LIBXSLT_STATIC"
     )
 
-target("pthreadVC2")
+target("pthread")
     set_kind("static")
     add_cxflags("/D UNICODE")
     add_cxflags("/utf-8", {force = true})
@@ -639,8 +663,6 @@ target("wtf")
         "ENABLE_XSLT",
         "_UNICODE",
         "UNICODE",
-        -- "ENABLE_COMPARE_AND_SWAP",
-        "__x86_64__",
         "WTF_OS_WINDOWS=1"
     )
     -- add_defines("UNICODE", "_UNICODE", "WIN32", "_TIMESPEC_DEFINED")
@@ -726,7 +748,6 @@ target("wtf")
     }) do
         add_files("./src/JavaScriptCore/wtf/"..f)
     end
-    -- add_deps("pthreadVC2", "icu")
     add_links(
         "gdi32",
         "user32",
@@ -734,7 +755,7 @@ target("wtf")
         "advapi32",
         "winmm",
         -- 3rd
-        "pthreadVC2"
+        "pthread"
     )
 
 target("JavaScriptCore")
@@ -780,7 +801,6 @@ target("JavaScriptCore")
         "ENABLE_XSLT",
         "_UNICODE",
         "UNICODE",
-        "__x86_64__",
         "ENABLE_COMPARE_AND_SWAP"
     )
     add_includedirs("3rd")
@@ -2138,7 +2158,6 @@ target("WebCore")
         "WTF_CHANGES=1",
         "_TIMESPEC_DEFINED",
         "NDEBUG",
-        "__x86_64__",
         "LIBXML_XPATH_ENABLED",
         "WTF_USE_OPENTYPE_SANITIZER"
     )
@@ -2226,7 +2245,6 @@ target("wke")
         "WTF_CHANGES=1",
         "_TIMESPEC_DEFINED",
         "NDEBUG",
-        "__x86_64__",
         "LIBXML_XPATH_ENABLED"
         --"EXPORT_WKE"
     )

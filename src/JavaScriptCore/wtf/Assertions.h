@@ -318,10 +318,22 @@ while (0)
 
 #endif
 
+
+#define COMPILER_SUPPORTS(WTF_COMPILER_FEATURE) (defined WTF_COMPILER_SUPPORTS_##WTF_COMPILER_FEATURE  && WTF_COMPILER_SUPPORTS_##WTF_COMPILER_FEATURE)
+
 /* COMPILE_ASSERT */
 #ifndef COMPILE_ASSERT
-#define COMPILE_ASSERT(exp, name) typedef int dummy##name [(exp) ? 1 : -1]
+#if COMPILER_SUPPORTS(C_STATIC_ASSERT)
+/* Unlike static_assert below, this also works in plain C code. */
+#define COMPILE_ASSERT(exp, name) _Static_assert((exp), #name)
+#else
+#define COMPILE_ASSERT(exp, name) static_assert((exp), #name)
 #endif
+#endif
+// /* COMPILE_ASSERT */
+// #ifndef COMPILE_ASSERT
+// #define COMPILE_ASSERT(exp, name) typedef int dummy##name [(exp) ? 1 : -1]
+// #endif
 
 /* FATAL */
 
