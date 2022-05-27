@@ -9,8 +9,15 @@ extern const char* curl_cookie_domain(void *cookie);
 extern const char* curl_cookie_path(void *cookie);
 extern bool curl_cookie_secure(void *cookie);
 extern int64_t curl_cookie_expires(void *c);
-extern void* curl_cookie_add(void *curl, const char* value, const char* domain, const char* path);
-
+// extern void* curl_cookie_add(void *curl, const char* value, const char* domain, const char* path);
+extern void* curl_cookie_add(
+    void *curl,
+    const char* value,
+    bool httpheader, /* TRUE if HTTP header-style line */
+    bool noexpire, /* if TRUE, skip remove_expired() */
+    const char* domain,
+    const char* path,
+    bool secure);
 }
 
 class HttpCookie
@@ -170,7 +177,7 @@ public:
         
         if (handle)
         {
-            void* cookie = curl_cookie_add(handle, value.utf8().data(), host.utf8().data(), path.utf8().data());
+            void* cookie = curl_cookie_add(handle, value.utf8().data(), true, true, host.utf8().data(), path.utf8().data(), true);
             if (cookie)
             {
                 HttpCookie c;

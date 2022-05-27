@@ -2109,6 +2109,44 @@ UErrorCode              *status) {
     
 }
 
+void UCNV_FROM_U_CALLBACK_STOP (
+const void *context,
+UConverterFromUnicodeArgs *fromUArgs,
+const UChar* codeUnits,
+int32_t length,
+UChar32 codePoint,
+UConverterCallbackReason reason,
+UErrorCode * err) {
+    
+}
+
+void UCNV_TO_U_CALLBACK_STOP (
+const void *context,
+UConverterToUnicodeArgs *toUArgs,
+const char* codeUnits,
+int32_t length,
+UConverterCallbackReason reason,
+UErrorCode * err) {
+    
+}
+
+void ucnv_convertEx(
+UConverter *targetCnv,
+UConverter *sourceCnv,
+char **target,
+const char *targetLimit,
+const char **source,
+const char *sourceLimit,
+UChar *pivotStart,
+UChar **pivotSource,
+UChar **pivotTarget,
+const UChar *pivotLimit,
+UBool reset,
+UBool flush,
+UErrorCode *pErrorCode) {
+    
+}
+
 #else
 void icuwin_init()
 {

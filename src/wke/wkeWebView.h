@@ -185,8 +185,6 @@ public:
     void wake();
     bool isAwake() const;
 
-    void setPageScaleFactor(float scale);
-    float pageScaleFactor();
     void setZoomFactor(float factor);
     float zoomFactor() const;
 

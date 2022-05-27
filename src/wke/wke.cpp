@@ -153,10 +153,10 @@ const utf8* wkeGetVersionString()
 }
 
 
-extern "C" void libcurl_set_file_system(FILE_OPEN pfn_open, FILE_CLOSE pfn_close, FILE_SIZE pfn_size, FILE_READ pfn_read, FILE_SEEK  pfn_seek);
+// extern "C" void libcurl_set_file_system(FILE_OPEN pfn_open, FILE_CLOSE pfn_close, FILE_SIZE pfn_size, FILE_READ pfn_read, FILE_SEEK  pfn_seek);
 void wkeSetFileSystem(FILE_OPEN pfn_open, FILE_CLOSE pfn_close, FILE_SIZE pfn_size, FILE_READ pfn_read, FILE_SEEK pfn_seek)
 {
-    libcurl_set_file_system(pfn_open, pfn_close, pfn_size, pfn_read, pfn_seek);
+    // libcurl_set_file_system(pfn_open, pfn_close, pfn_size, pfn_read, pfn_seek);
 }
 
 const char* wkeGetName(wkeWebView* webView)

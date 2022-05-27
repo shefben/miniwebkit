@@ -1142,16 +1142,6 @@ namespace wke
     {
         return m_awake;
     }
-    void CWebView::setPageScaleFactor(float scale)
-    {
-        WebCore::LayoutPoint* point = new WebCore::LayoutPoint();
-        m_mainFrame->setPageScaleFactor(scale, *point);
-    }
-
-    float CWebView::pageScaleFactor()
-    {
-        return m_mainFrame->pageScaleFactor();
-    }
     void CWebView::setZoomFactor(float factor)
     {
         m_mainFrame->setPageZoomFactor(factor);

@@ -6,8 +6,6 @@ add_cxxflags("/wd4838", {force = true})
 add_cxxflags("/GS", {force = true})
 
 
-
-add_linkdirs("./3rd/lib/x86")
 set_arch("x86")
 add_defines(
     "WIN32",
@@ -29,14 +27,253 @@ target("zlib")
     add_defines("NDEBUG", "_CRT_SECURE_NO_DEPRECATE")
     add_cxflags("/utf-8", {force = true})
 
+target("sqlite3")
+    set_kind("static")
+    add_cflags("/D UNICODE")
+    add_defines("UNICODE", "_UNICODE")
+    for _, f in ipairs({
+        "sqlite3.c"
+    }) do
+        add_files(
+            "./3rd/sqlite3/"..f
+        )
+    end
+
+local opensslDir = "./3rd/openssl-OpenSSL_1_1_1o/"
+
+target("libssl")
+    set_kind("static")
+    before_build(function (target)
+        os.cd(opensslDir)
+        for _, f in ipairs({
+            "include/crypto/bn_conf",
+            "include/crypto/dso_conf",
+            "include/openssl/opensslconf"
+        }) do
+            local stdout, _ = os.iorunv(
+                "perl",
+                {
+                    "-I",
+                    ".",
+                    "-Mconfigdata",
+                    "util/dofile.pl",
+                    "-omakefile",
+                    f..".h.in"
+                }
+            )
+            io.writefile(f..".h", stdout)
+        end
+        local stdout, _ os.iorunv(
+            "perl",
+            {
+                "util/mkbuildinf.pl",
+                "",
+                "VC-WIN64A"
+            }
+        )
+        io.writefile("crypto/buildinf.h", stdout)
+        local stdout, _ = os.iorunv(
+            "perl",
+            {
+                "-I",
+                ".",
+                "util/mkrc.pl",
+                "libssl"
+            }
+        )
+        io.writefile("libssl.rc", stdout)
+        os.cd("-")
+    end)
+    for _, f in ipairs({
+        "libssl.rc",
+        "ssl/bio_ssl.c",
+        "ssl/d1_lib.c",
+        "ssl/d1_msg.c",
+        "ssl/d1_srtp.c",
+        "ssl/methods.c",
+        "ssl/packet.c",
+        "ssl/pqueue.c",
+        "ssl/record/dtls1_bitmap.c",
+        "ssl/record/rec_layer_d1.c",
+        "ssl/record/rec_layer_s3.c",
+        "ssl/record/ssl3_buffer.c",
+        "ssl/record/ssl3_record.c",
+        "ssl/record/ssl3_record_tls13.c",
+        "ssl/s3_cbc.c",
+        "ssl/s3_enc.c",
+        "ssl/s3_lib.c",
+        "ssl/s3_msg.c",
+        "ssl/ssl_asn1.c",
+        "ssl/ssl_cert.c",
+        "ssl/ssl_ciph.c",
+        "ssl/ssl_conf.c",
+        "ssl/ssl_err.c",
+        "ssl/ssl_init.c",
+        "ssl/ssl_lib.c",
+        "ssl/ssl_mcnf.c",
+        "ssl/ssl_rsa.c",
+        "ssl/ssl_sess.c",
+        "ssl/ssl_stat.c",
+        "ssl/ssl_txt.c",
+        "ssl/ssl_utst.c",
+        "ssl/statem/extensions.c",
+        "ssl/statem/extensions_clnt.c",
+        "ssl/statem/extensions_cust.c",
+        "ssl/statem/extensions_srvr.c",
+        "ssl/statem/statem.c",
+        "ssl/statem/statem_clnt.c",
+        "ssl/statem/statem_dtls.c",
+        "ssl/statem/statem_lib.c",
+        "ssl/statem/statem_srvr.c",
+        "ssl/t1_enc.c",
+        "ssl/t1_lib.c",
+        "ssl/t1_trce.c",
+        "ssl/tls13_enc.c",
+        "ssl/tls_srp.c"
+    }) do
+        add_files(opensslDir..f)
+    end
+    add_defines(
+        "ZLIB",
+        "OPENSSL_SYS_WIN32",
+        "WIN32_LEAN_AND_MEAN",
+        "UNICODE",
+        "_UNICODE",
+        "_CRT_SECURE_NO_DEPRECATE",
+        "_WINSOCK_DEPRECATED_NO_WARNINGS",
+        "OPENSSL_USE_APPLINK",
+        "NDEBUG",
+        "OPENSSL_API_COMPAT=0x10100000L",
+        -- "OPENSSL_API_COMPAT=0x00908000L",
+        "L_ENDIAN",
+        "OPENSSL_PIC",
+        "OPENSSLDIR=\"\"",
+        "ENGINESDIR=\"\"",
+        "DATE=\"\"",
+        "compiler_flags=\"\""
+    )
+    if is_arch("i386") then
+        add_defines("PLATFORM=\"VC-WIN32\"")
+    else
+        add_defines("PLATFORM=\"VC-WIN64\"")
+    end
+    for _, f in ipairs({
+        "crypto/dllmain.c",
+        "crypto/cpt_err.c",
+        "crypto/cryptlib.c",
+        "crypto/ctype.c",
+        "crypto/cversion.c",
+        "crypto/ebcdic.c",
+        "crypto/ex_data.c",
+        "crypto/getenv.c",
+        "crypto/init.c",
+        "crypto/mem.c",
+        "crypto/mem_clr.c",
+        "crypto/mem_dbg.c",
+        "crypto/mem_sec.c",
+        "crypto/o_dir.c",
+        "crypto/o_fips.c",
+        "crypto/o_fopen.c",
+        "crypto/o_init.c",
+        "crypto/o_str.c",
+        "crypto/o_time.c",
+        "crypto/threads_none.c",
+        "crypto/threads_pthread.c",
+        "crypto/threads_win.c",
+        "crypto/uid.c",
+        "crypto/aes/*.c|aes_x86core.c",
+        "crypto/aria/*.c",
+        "crypto/asn1/*.c",
+        "crypto/async/arch/*.c",
+        "crypto/async/*.c",
+        "crypto/bf/*.c",
+        "crypto/bio/*.c",
+        "crypto/blake2/*.c",
+        "crypto/bn/*.c|rsaz_exp.c",
+        "crypto/buffer/*.c",
+        "crypto/camellia/*.c",
+        "crypto/cast/*.c",
+        "crypto/chacha/*.c",
+        "crypto/cmac/*.c",
+        "crypto/cms/*.c",
+        "crypto/comp/*.c",
+        "crypto/conf/*.c",
+        "crypto/ct/*.c",
+        "crypto/des/*.c|ncbc_enc.c",
+        "crypto/dh/*.c",
+        "crypto/dsa/*.c",
+        "crypto/dso/*.c",
+        "crypto/ec/*.c|ecp_nistz256_table.c|ecp_nistz256.c",
+        "crypto/ec/curve448/*.c",
+        "crypto/ec/curve448/arch_32/*.c",
+        "crypto/engine/*.c|eng_devcrypto.c",
+        "crypto/err/*.c",
+        "crypto/evp/*.c",
+        "crypto/hmac/*.c",
+        "crypto/idea/*.c",
+        "crypto/kdf/*.c",
+        "crypto/lhash/*.c",
+        "crypto/md4/*.c",
+        "crypto/md5/*.c",
+        "crypto/mdc2/*.c",
+        "crypto/modes/*.c",
+        "crypto/objects/*.c",
+        "crypto/ocsp/*.c",
+        "crypto/pem/*.c",
+        "crypto/pkcs12/*.c",
+        "crypto/pkcs7/*.c",
+        "crypto/poly1305/*.c|poly1305_base2_44.c|poly1305_ieee754.c",
+        "crypto/rand/*.c",
+        "crypto/rc2/*.c",
+        "crypto/rc4/*.c",
+        "crypto/ripemd/*.c",
+        "crypto/rsa/*.c",
+        "crypto/seed/*.c",
+        "crypto/sha/*.c",
+        "crypto/siphash/*.c",
+        "crypto/sm2/*.c",
+        "crypto/sm3/*.c",
+        "crypto/sm4/*.c",
+        "crypto/srp/*.c",
+        "crypto/stack/*.c",
+        "crypto/store/*.c",
+        "crypto/ts/*.c",
+        "crypto/txt_db/*.c",
+        "crypto/ui/*.c",
+        "crypto/whrlpool/*.c",
+        "crypto/x509/*.c",
+        "crypto/x509v3/*.c",
+        "ms/uplink.c"
+    }) do
+        add_files(opensslDir..f)
+    end
+    for _, dir in ipairs({
+        "",
+        "include",
+        "include/crypto",
+        "crypto/ec/curve448",
+        "crypto/ec/curve448/arch_32",
+        "crypto/modes"
+    }) do
+         add_includedirs(opensslDir..dir)
+    end
+    add_includedirs("./3rd/zlib")
+    add_deps("zlib")
+    add_links("ws2_32", "advapi32", "user32")
+
 target("libcurl")
     set_kind("static")
+    -- set_kind("shared")
     add_cxflags("/D UNICODE")
-    add_files("./3rd/libcurl/*.c")
+    add_files("./3rd/libcurl-7.83.1/wkeCookie.c")
+    add_files("./3rd/libcurl-7.83.1/lib/*.c")
+    add_files("./3rd/libcurl-7.83.1/lib/vtls/*.c")
+    add_files("./3rd/libcurl-7.83.1/lib/vauth/*.c")
     add_includedirs(
-        "./3rd/libcurl/include",
+        "./3rd/libcurl-7.83.1/lib",
+        "./3rd/libcurl-7.83.1/include",
         "./3rd/zlib",
-        "./3rd"
+        "./3rd/openssl-OpenSSL_1_1_1o/include"
     )
     add_defines(
         "NDEBUG",
@@ -44,12 +281,19 @@ target("libcurl")
         "WIN32",
         "BUILDING_LIBCURL",
         "CURL_STATICLIB",
-        "CURL_DISABLE_LDAP",
+        -- "CURL_DISABLE_LDAP",
         "HAVE_LIBZ",
         "HAVE_ZLIB_H",
         "USE_SSLEAY",
-        "USE_OPENSSL"
+        "USE_OPENSSL",
+        "UNICODE",
+        "_UNICODE",
+        "OPENSSL_VERSION_NUMBER=0x10100000L",
+        "OPENSSL_API_COMPAT=0x10100000L"
+        -- "USE_WIN32_LDAP"
     )
+    add_links("ws2_32", "wldap32", "crypt32")
+    add_deps("libssl")
 
 target("libpng")
     set_kind("static")
@@ -60,6 +304,62 @@ target("libpng")
     add_cxflags("/utf-8", {force = true})
     add_deps("zlib")
 
+target("libjpeg")
+    set_kind("static")
+    add_cxflags("/utf-8", {force = true})
+    before_build(function (target)
+        os.cp("./3rd/libjpeg/jconfig.vc", "./3rd/libjpeg/jconfig.h")
+    end)
+    for _, f in ipairs({
+        "jcapimin.c",
+        "jcapistd.c",
+        "jctrans.c",
+        "jcparam.c",
+        "jdatadst.c",
+        "jcinit.c",
+        "jcmaster.c",
+        "jcmarker.c",
+        "jcmainct.c",
+        "jcprepct.c",
+        "jccoefct.c",
+        "jccolor.c",
+        "jcsample.c",
+        "jchuff.c",
+        "jcphuff.c",
+        "jcdctmgr.c",
+        "jfdctfst.c",
+        "jfdctflt.c",
+        "jfdctint.c",
+        "jdapimin.c",
+        "jdapistd.c",
+        "jdtrans.c",
+        "jdatasrc.c",
+        "jdmaster.c",
+        "jdinput.c",
+        "jdmarker.c",
+        "jdhuff.c",
+        "jdphuff.c",
+        "jdmainct.c",
+        "jdcoefct.c",
+        "jdpostct.c",
+        "jddctmgr.c",
+        "jidctfst.c",
+        "jidctflt.c",
+        "jidctint.c",
+        "jidctred.c",
+        "jdsample.c",
+        "jdcolor.c",
+        "jquant1.c",
+        "jquant2.c",
+        "jdmerge.c",
+        "jcomapi.c",
+        "jutils.c",
+        "jerror.c",
+        "jmemmgr.c",
+        "jmemnobs.c"
+    }) do
+        add_files("./3rd/libjpeg/"..f)
+    end
 
 target("cairo")
     set_kind("static")
@@ -113,9 +413,11 @@ target("cairo")
 
 target("libxml2")
     set_kind("static")
+    set_pcxxheader("./3rd/libxml2/stdafx.h")
     add_cxflags("/D UNICODE")
     add_cxflags("/utf-8", {force = true})
     add_includedirs("./3rd/libxml2")
+    add_includedirs("./3rd/libxml2/libxml")
     add_includedirs("./3rd/include")
     add_files("./3rd/libxml2/*.c")
     add_defines(
@@ -127,7 +429,12 @@ target("libxml2")
         "LIBXML_TREE_ENABLED",
         "LIBXML_HTML_ENABLED",
         "NOLIBTOOL",
-        "LIBXML_STATIC"
+        "LIBXML_STATIC",
+        "LIBXML_FTP_ENABLED",
+        "SEND_ARG2_CAST=",
+        "GETHOSTBYNAME_ARG_CAST=",
+        "WIN32_LEAN_AND_MEAN"
+        -- "LIBXML_HTTP_ENABLED"
     )
 
 target("libxslt")
@@ -1802,7 +2109,7 @@ target("WebCore")
         "cairo/src",
         "libxml2",
         "zlib",
-        "libcurl/include",
+        "libcurl-7.83.1/include",
         "include/SQLite",
         "include/libpng13",
         "include/libjpeg"
@@ -1859,7 +2166,6 @@ target("WebCore")
         -- 3rd
         "libjpeg",
         "libcurl",
-        "libcrypto",
         "libssl",
         "SQLite3",
         "libxml2",
@@ -1944,10 +2250,9 @@ target("wke")
         "include",
         "pthreads",
         "cairo/src",
-        "libcurl/include"
+        "libcurl-7.83.1/include"
         -- "libxml2",
         -- "zlib",
-        -- "libcurl/include",
         -- "include/SQLite",
         -- "include/libpng13",
         -- "include/libjpeg"
