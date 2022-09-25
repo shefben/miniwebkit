@@ -842,3 +842,15 @@ int wkeRunMessageLoop(const bool *quit)
 
     return 0;
 }
+
+
+// #include <WebCore/DocumentLoader.h>
+// #include <WebCore/ResourceRequest.h>
+// #include <WebCore/KURL.h>
+
+// void wkeTest() {
+//     auto url = WebCore::KURL(WebCore::ParsedURLString, "");
+//     auto loader = WebCore::DocumentLoader::create(WebCore::ResourceRequest(url), WebCore::SubstituteData());
+//     auto title = loader ->title();
+//     printf("wke test done\n");
+// }

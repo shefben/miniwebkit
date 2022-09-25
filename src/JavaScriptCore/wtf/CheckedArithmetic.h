@@ -113,7 +113,7 @@ template <typename Target, typename Source> struct BoundsChecker<Target, Source,
     {
         // Same signedness so implicit type conversion will always increase precision
         // to widest type
-        return value <= std::numeric_limits<Target>::max();
+        return value <= (std::numeric_limits<Target>::max)();
     }
 };
 
@@ -122,7 +122,7 @@ template <typename Target, typename Source> struct BoundsChecker<Target, Source,
     {
         // Same signedness so implicit type conversion will always increase precision
         // to widest type
-        return std::numeric_limits<Target>::min() <= value && value <= std::numeric_limits<Target>::max();
+        return (std::numeric_limits<Target>::min)() <= value && value <= (std::numeric_limits<Target>::max)();
     }
 };
 
@@ -135,10 +135,10 @@ template <typename Target, typename Source> struct BoundsChecker<Target, Source,
         // If our (unsigned) Target is the same or greater width we can
         // convert value to type Target without losing precision
         if (sizeof(Target) >= sizeof(Source)) 
-            return static_cast<Target>(value) <= std::numeric_limits<Target>::max();
+            return static_cast<Target>(value) <= (std::numeric_limits<Target>::max)();
         // The signed Source type has greater precision than the target so
         // max(Target) -> Source will widen.
-        return value <= static_cast<Source>(std::numeric_limits<Target>::max());
+        return value <= static_cast<Source>((std::numeric_limits<Target>::max)());
     }
 };
 
@@ -147,7 +147,7 @@ template <typename Target, typename Source> struct BoundsChecker<Target, Source,
     {
         // Signed target with an unsigned source
         if (sizeof(Target) <= sizeof(Source)) 
-            return value <= static_cast<Source>(std::numeric_limits<Target>::max());
+            return value <= static_cast<Source>((std::numeric_limits<Target>::max)());
         // Target is Wider than Source so we're guaranteed to fit any value in
         // unsigned Source
         return true;
@@ -236,10 +236,10 @@ template <typename LHS, typename RHS, typename ResultType> struct ArithmeticOper
     {
         if (signsMatch(lhs, rhs)) {
             if (lhs >= 0) {
-                if ((std::numeric_limits<ResultType>::max() - rhs) < lhs)
+                if (((std::numeric_limits<ResultType>::max)() - rhs) < lhs)
                     return false;
             } else {
-                ResultType temp = lhs - std::numeric_limits<ResultType>::min();
+                ResultType temp = lhs - (std::numeric_limits<ResultType>::min)();
                 if (rhs < -temp)
                     return false;
             }
@@ -252,10 +252,10 @@ template <typename LHS, typename RHS, typename ResultType> struct ArithmeticOper
     {
         if (!signsMatch(lhs, rhs)) {
             if (lhs >= 0) {
-                if (lhs > std::numeric_limits<ResultType>::max() + rhs)
+                if (lhs > (std::numeric_limits<ResultType>::max)() + rhs)
                     return false;
             } else {
-                if (rhs > std::numeric_limits<ResultType>::max() + lhs)
+                if (rhs > (std::numeric_limits<ResultType>::max)() + lhs)
                     return false;
             }
         } // if the signs match this operation can't overflow
@@ -267,20 +267,20 @@ template <typename LHS, typename RHS, typename ResultType> struct ArithmeticOper
     {
         if (signsMatch(lhs, rhs)) {
             if (lhs >= 0) {
-                if (lhs && (std::numeric_limits<ResultType>::max() / lhs) < rhs)
+                if (lhs && ((std::numeric_limits<ResultType>::max)() / lhs) < rhs)
                     return false;
             } else {
-                if (lhs == std::numeric_limits<ResultType>::min() || rhs == std::numeric_limits<ResultType>::min())
+                if (lhs == (std::numeric_limits<ResultType>::min)() || rhs == (std::numeric_limits<ResultType>::min)())
                     return false;
-                if ((std::numeric_limits<ResultType>::max() / -lhs) < -rhs)
+                if (((std::numeric_limits<ResultType>::max)() / -lhs) < -rhs)
                     return false;
             }
         } else {
             if (lhs < 0) {
-                if (rhs && lhs < (std::numeric_limits<ResultType>::min() / rhs))
+                if (rhs && lhs < ((std::numeric_limits<ResultType>::min)() / rhs))
                     return false;
             } else {
-                if (lhs && rhs < (std::numeric_limits<ResultType>::min() / lhs))
+                if (lhs && rhs < ((std::numeric_limits<ResultType>::min)() / lhs))
                     return false;
             }
         }
@@ -329,9 +329,9 @@ template <typename ResultType> struct ArithmeticOperations<int, unsigned, Result
     static inline bool add(int64_t lhs, int64_t rhs, ResultType& result)
     {
         int64_t temp = lhs + rhs;
-        if (temp < std::numeric_limits<ResultType>::min())
+        if (temp < (std::numeric_limits<ResultType>::min)())
             return false;
-        if (temp > std::numeric_limits<ResultType>::max())
+        if (temp > (std::numeric_limits<ResultType>::max)())
             return false;
         result = static_cast<ResultType>(temp);
         return true;
@@ -340,9 +340,9 @@ template <typename ResultType> struct ArithmeticOperations<int, unsigned, Result
     static inline bool sub(int64_t lhs, int64_t rhs, ResultType& result)
     {
         int64_t temp = lhs - rhs;
-        if (temp < std::numeric_limits<ResultType>::min())
+        if (temp < (std::numeric_limits<ResultType>::min)())
             return false;
-        if (temp > std::numeric_limits<ResultType>::max())
+        if (temp > (std::numeric_limits<ResultType>::max)())
             return false;
         result = static_cast<ResultType>(temp);
         return true;
@@ -351,9 +351,9 @@ template <typename ResultType> struct ArithmeticOperations<int, unsigned, Result
     static inline bool multiply(int64_t lhs, int64_t rhs, ResultType& result)
     {
         int64_t temp = lhs * rhs;
-        if (temp < std::numeric_limits<ResultType>::min())
+        if (temp < (std::numeric_limits<ResultType>::min)())
             return false;
-        if (temp > std::numeric_limits<ResultType>::max())
+        if (temp > (std::numeric_limits<ResultType>::max)())
             return false;
         result = static_cast<ResultType>(temp);
         return true;
@@ -481,7 +481,7 @@ public:
     // prefix
     const Checked& operator++()
     {
-        if (m_value == std::numeric_limits<T>::max())
+        if (m_value == (std::numeric_limits<T>::max)())
             this->overflowed();
         m_value++;
         return *this;
@@ -489,7 +489,7 @@ public:
     
     const Checked& operator--()
     {
-        if (m_value == std::numeric_limits<T>::min())
+        if (m_value == (std::numeric_limits<T>::min)())
             this->overflowed();
         m_value--;
         return *this;
@@ -498,14 +498,14 @@ public:
     // postfix operators
     const Checked operator++(int)
     {
-        if (m_value == std::numeric_limits<T>::max())
+        if (m_value == (std::numeric_limits<T>::max)())
             this->overflowed();
         return Checked(m_value++);
     }
     
     const Checked operator--(int)
     {
-        if (m_value == std::numeric_limits<T>::min())
+        if (m_value == (std::numeric_limits<T>::min)())
             this->overflowed();
         return Checked(m_value--);
     }

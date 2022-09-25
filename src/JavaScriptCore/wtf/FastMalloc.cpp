@@ -2464,8 +2464,10 @@ class TCMalloc_Central_FreeList {
 
 // Pad each CentralCache object to multiple of 64 bytes
 class TCMalloc_Central_FreeListPadded : public TCMalloc_Central_FreeList {
+#ifdef __i386__
  private:
   char pad_[(64 - (sizeof(TCMalloc_Central_FreeList) % 64)) % 64];
+#endif
 };
 
 //-------------------------------------------------------------------
@@ -2474,7 +2476,7 @@ class TCMalloc_Central_FreeListPadded : public TCMalloc_Central_FreeList {
 
 // Central cache -- a collection of free-lists, one per size-class.
 // We have a separate lock per free-list to reduce contention.
-static TCMalloc_Central_FreeListPadded* central_cache = (TCMalloc_Central_FreeListPadded*)malloc(sizeof(TCMalloc_Central_FreeListPadded) * kNumClasses);//kNumClasses];
+static TCMalloc_Central_FreeListPadded central_cache[kNumClasses];
 
 // Page-level allocator
 static AllocAlignmentInteger pageheap_memory[(sizeof(TCMalloc_PageHeap) + sizeof(AllocAlignmentInteger) - 1) / sizeof(AllocAlignmentInteger)];

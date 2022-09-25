@@ -530,7 +530,7 @@ WKE_API void       WKE_CALL  wkeJSAddRef(wkeJSState* es, wkeJSValue v);
 WKE_API void       WKE_CALL  wkeJSReleaseRef(wkeJSState* es, wkeJSValue v);
 WKE_API void       WKE_CALL  wkeJSCollectGarbge(); 
 
-
+// WKE_API void WKE_CALL wkeTest();
 
 
 #ifdef __cplusplus

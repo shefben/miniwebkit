@@ -106,7 +106,7 @@ public:
         while (m_buffer[len] != UChar(0))
             len++;
 
-        if (len > std::numeric_limits<unsigned>::max())
+        if (len > (std::numeric_limits<unsigned>::max)())
             CRASH();
 
         m_length = len;

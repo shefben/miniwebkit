@@ -5,11 +5,12 @@ add_cxxflags("/wd4291", {force = true})
 add_cxxflags("/wd4838", {force = true})
 add_cxxflags("/GS", {force = true})
 
-
--- set_arch("x86")
+local useX86 = true
+if useX86 then
+    set_arch("x86")
+end
 add_defines(
     "WIN32",
-    "WTF_USE_JSVALUE32_64",
     "UCHAR_TYPE=wchar_t",
     "U_SIZEOF_WCHAR_T=2",
     "USE_ICU_WIN",
@@ -17,10 +18,11 @@ add_defines(
     "DEPLOYMENT_TARGET_WINDOWS",
     "WINVER=0x0A00",
     "_WIN32_WINNT=0x0A00",
-    "_WIN32_IE=0x0A00"
+    "_WIN32_IE=0x0A00",
+    "ENABLE_WTF_MALLOC_VALIDATION"
 )
-if is_arch("i386") then
-    add_defines("__i386__")
+if useX86 then
+    add_defines("__i386__", "WTF_USE_JSVALUE32_64")
 else
     add_defines("__x86_64__")
 end
@@ -174,7 +176,7 @@ target("libssl")
         "DATE=\"\"",
         "compiler_flags=\"\""
     )
-    if is_arch("i386") then
+    if useX86 then
         add_defines("PLATFORM=\"VC-WIN32\"")
     else
         add_defines("PLATFORM=\"VC-WIN64\"")
@@ -800,8 +802,8 @@ target("JavaScriptCore")
         "ENABLE_WORKERS",
         "ENABLE_XSLT",
         "_UNICODE",
-        "UNICODE",
-        "ENABLE_COMPARE_AND_SWAP"
+        "UNICODE"
+        -- "ENABLE_COMPARE_AND_SWAP"
     )
     add_includedirs("3rd")
     for _, dir in ipairs({
@@ -2186,7 +2188,7 @@ target("WebCore")
         "libjpeg",
         "libcurl",
         "libssl",
-        "SQLite3",
+        "sqlite3",
         "libxml2",
         "libxslt",
         "cairo",
@@ -2302,7 +2304,7 @@ target("wkeBrowser")
         "_WINDOWS",
         "UNICODE",
         "_UNICODE",
-        "_COLSOLE"
+        "_CONSLOE"
     )
     -- add_ldflags("/SUBSYSTEM:WINDOWS", {force = true})
     add_links("imm32", "shell32", "ole32", "advapi32", "user32", "ws2_32")
@@ -2312,6 +2314,79 @@ target("wkeBrowser")
         -- "rpcrt4",
         -- "advapi32",
 
+target("test1")
+    set_kind("binary")
+    add_cxflags("/D UNICODE")
+    add_cxflags("/utf-8", {force = true})
+    set_pcxxheader("./demos/stdafx.h")
+    add_files("./demos/stdafx.cpp")
+    for _, f in ipairs({
+        "string_ptr.cpp"
+    }) do
+        add_files("./demos/"..f)
+    end
+
+    for _, define in ipairs(FEATURE_DEFINES) do
+        add_defines(define.."=1")
+    end
+    add_defines(
+        "WTF_PLATFORM_WIN_CAIRO=1",
+        "CAIRO_WIN32_STATIC_BUILD",
+        "WIN32",
+        "_WINDOWS",
+        "_CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES=1",
+        "_HAS_EXCEPTIONS=0",
+        "BUILDING_wke",
+        "JS_NO_EXPORT",
+        "CURL_STATICLIB",
+        "LIBXML_STATIC",
+        "LIBXSLT_STATIC",
+        "PTW32_STATIC_LIB",
+        "UCONFIG_NO_COLLATION=1",
+        "USE_WINDOWS_SSPI",
+        "USE_SSLEAY",
+        "HAVE_ZLIB",
+        "__STD_C",
+        "WTF_CHANGES=1",
+        "_TIMESPEC_DEFINED",
+        "NDEBUG",
+        "LIBXML_XPATH_ENABLED"
+    )
+    for _, dir in ipairs({
+        "include/WebCore",
+        "include",
+        "include/private",
+        "include/WebCore/ForwardingHeaders",
+        "include/JavaScriptCore",
+        "obj/WebCore/DerivedSources",
+        "include/WebCore/ForwardingHeaders/runtime",
+        "include/WebCore/ForwardingHeaders/wtf"
+    }) do
+        add_includedirs("./build/"..dir)
+    end
+    add_includedirs("./src/icu")
+    for _, dir in ipairs({
+        "",
+        "include",
+        "pthreads",
+        "cairo/src",
+        "libcurl-7.83.1/include"
+    }) do
+        add_includedirs("./3rd/".. dir)
+    end
+    add_deps("WebCore")
+    add_links(
+        "comdlg32",
+        "imm32",
+        "rpcrt4"
+    )
+
 target("test")
     set_kind("binary")
-    add_files("test.c")
+    add_cxxflags("/D UNICODE")
+    add_cxxflags("/utf-8", {force = true})
+    add_includedirs("./src/JavaScriptCore")
+    add_includedirs("./3rd/include")
+    add_files("./demos/string_ptr.cpp")
+    add_deps("wtf")
+    add_links("icu", "ole32")

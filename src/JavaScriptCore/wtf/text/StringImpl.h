@@ -182,7 +182,7 @@ public:
             return empty();
         }
 
-        if (length > ((std::numeric_limits<unsigned>::max() - sizeof(StringImpl)) / sizeof(UChar))) {
+        if (length > (((std::numeric_limits<unsigned>::max)() - sizeof(StringImpl)) / sizeof(UChar))) {
             output = 0;
             return 0;
         }

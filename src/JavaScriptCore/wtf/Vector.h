@@ -278,7 +278,7 @@ namespace WTF {
         {
             ASSERT(newCapacity);
             m_capacity = newCapacity;
-            if (newCapacity > std::numeric_limits<size_t>::max() / sizeof(T))
+            if (newCapacity > (std::numeric_limits<size_t>::max)() / sizeof(T))
                 CRASH();
             m_buffer = static_cast<T*>(fastMalloc(newCapacity * sizeof(T)));
         }
@@ -286,7 +286,7 @@ namespace WTF {
         bool tryAllocateBuffer(size_t newCapacity)
         {
             ASSERT(newCapacity);
-            if (newCapacity > std::numeric_limits<size_t>::max() / sizeof(T))
+            if (newCapacity > (std::numeric_limits<size_t>::max)() / sizeof(T))
                 return false;
 
             T* newBuffer;

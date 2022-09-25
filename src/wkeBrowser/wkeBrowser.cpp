@@ -380,6 +380,7 @@ protected:
 int uimain(HINSTANCE hInstance, int nCmdShow) {
     LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
 	LoadString(hInstance, IDC_WKEBROWSER, szWindowClass, MAX_LOADSTRING);
+    // wkeTest();
 	MyRegisterClass(hInstance);
 
 	if (!InitInstance (hInstance, nCmdShow))
