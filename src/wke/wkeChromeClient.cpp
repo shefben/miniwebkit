@@ -164,7 +164,6 @@ ChromeClient::ChromeClient(CWebView* webView) :m_webView(webView)
 }
 void ChromeClient::chromeDestroyed()
 {
-    dbgMsg(L"frameLoaderDestroyed\n");
     delete this;
 }
 
@@ -461,12 +460,10 @@ bool ChromeClient::shouldInterruptJavaScript()
 
 void ChromeClient::setStatusbarText(const WTF::String& text)
 {
-    dbgMsg(L"setStatusbarText %s\n", CSTR(text));
 }
 
 bool ChromeClient::runJavaScriptPrompt(WebCore::Frame*, const WTF::String& msg, const WTF::String& defaultValue, WTF::String& result)
 {
-    outputMsg(L"JavaScript Prompt %s %s\n", CSTR(msg), CSTR(defaultValue));
 
     wke::CWebViewHandler& handler = m_webView->m_handler;
     if (!handler.promptBoxCallback)
@@ -484,7 +481,6 @@ bool ChromeClient::runJavaScriptPrompt(WebCore::Frame*, const WTF::String& msg, 
 
 bool ChromeClient::runJavaScriptConfirm(WebCore::Frame*, const WTF::String& msg)
 {
-    outputMsg(L"JavaScript Confirm %s\n", CSTR(msg));
 
     wke::CWebViewHandler& handler = m_webView->m_handler;
     if (!handler.confirmBoxCallback)
@@ -496,7 +492,6 @@ bool ChromeClient::runJavaScriptConfirm(WebCore::Frame*, const WTF::String& msg)
 
 void ChromeClient::runJavaScriptAlert(WebCore::Frame*, const WTF::String& msg)
 {
-    outputMsg(L"JavaScript Alert %s\n", CSTR(msg));
 
     wke::CWebViewHandler& handler = m_webView->m_handler;
     if (!handler.alertBoxCallback)
@@ -525,7 +520,6 @@ bool ChromeClient::canRunBeforeUnloadConfirmPanel()
 
 void ChromeClient::addMessageToConsole(WebCore::MessageSource source, WebCore::MessageType type, WebCore::MessageLevel level, const WTF::String& message, unsigned int lineNumber, const WTF::String& url)
 {
-    outputMsg(L"console message %s %d %s\n", CSTR(message), lineNumber, CSTR(url));
 
     wke::CWebViewHandler& handler = m_webView->m_handler;
     if (!handler.consoleMessageCallback)

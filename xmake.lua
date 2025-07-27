@@ -1732,15 +1732,13 @@ target("wke")
         "wke.cpp",
         "wkeChromeClient.cpp",
         "wkeContextMenuClient.cpp",
-        "wkeDebug.cpp",
         "wkeDragClient.cpp",
         "wkeEditorClient.cpp",
         "wkeFrameLoaderClient.cpp",
         "wkePlatformStrategies.cpp",
         "wkePopupMenu.cpp",
         "wkeString.cpp",
-        "wkeWebView.cpp",
-        "wkeWebWindow.cpp"
+        "wkeWebView.cpp"
     }) do
         add_files("./src/wke/"..f)
     end
@@ -1806,34 +1804,6 @@ target("wke")
         "imm32",
         "rpcrt4"
     )
-
-target("wkeBrowser")
-    set_kind("binary")
-    add_cxxflags("/D UNICODE")
-    add_cxxflags("/utf-8", {force = true})
-    add_deps("wke")
-    add_includedirs("./src/wke")
-    add_files(
-        "./src/wkeBrowser/render.cpp",
-        "./src/wkeBrowser/renderD3D.cpp",
-        "./src/wkeBrowser/wkeBrowser.cpp",
-        "./src/wkeBrowser/wkeBrowser.rc"
-    )
-    add_defines(
-        "WIN32",
-        "NDEBUG",
-        "_WINDOWS",
-        "UNICODE",
-        "_UNICODE",
-        "_CONSLOE"
-    )
-    -- add_ldflags("/SUBSYSTEM:WINDOWS", {force = true})
-    add_links("imm32", "shell32", "ole32", "advapi32", "user32", "ws2_32")
-    
-        -- "user32",
-        -- "ws2_32",
-        -- "rpcrt4",
-        -- "advapi32",
 
 target("test1")
     set_kind("binary")
