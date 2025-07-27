@@ -316,16 +316,6 @@ function cssyy(ctx)
     print("generate cssyy done")
 end
 
-function xpathyy(ctx)
-    local webCoreDir = ctx.srcDir
-    local outDir = ctx.outputDir
-    runBison(
-        webCoreDir.."xml/XPathGrammar.y",
-        outDir,
-        "XPathGrammar",
-        "xpathyy"
-    )
-    print("generate xpathyy done")
 end
 
 function toPascalCase(s)
@@ -625,51 +615,6 @@ function makeHTMLElementFactory(ctx)
 end
 
 
-function makeXMLNSNames(ctx)
-    local webCoreDir = ctx.srcDir
-    local outputDir = ctx.outputDir
-    local output = outputDir.."XMLNSNames.cpp"
-    local args = {
-        "--outputDir",
-        outputDir,
-        "--attrs",
-        webCoreDir.."xml/xmlnsattrs.in"
-    }
-    runPerl(
-        webCoreDir,
-        webCoreDir.."dom/make_names.pl",
-        nil,
-        args
-    )
-    print("xml generate "..output)
-    output = outputDir.."XMLNames.cpp"
-    args = {
-        "--outputDir",
-        outputDir,
-        "--attrs",
-        webCoreDir.."xml/xmlattrs.in"
-    }
-    runPerl(
-        webCoreDir,
-        webCoreDir.."dom/make_names.pl",
-        nil,
-        args
-    )
-    print("xml generate "..output)
-    output = outputDir.."XLinkNames.cpp"
-    args = {
-        "--outputDir",
-        outputDir,
-        "--attrs",
-        webCoreDir.."svg/xlinkattrs.in"
-    }
-    runPerl(
-        webCoreDir,
-        webCoreDir.."dom/make_names.pl",
-        nil,
-        args
-    )
-    print("xml generate "..output)
 end
 
 function makeMathMLElementFactory(ctx)
@@ -740,26 +685,6 @@ function makeSVGElementFactory(ctx)
     )
     print("SVGElementFactory generate "..output)
 end
-
-
-function makeXMLViewerJS(ctx)
-    local webCoreDir = ctx.srcDir
-    local outputDir = ctx.outputDir
-    local output = outputDir.."XMLViewerJS.h"
-    local input = webCoreDir.."xml/XMLViewer.js"
-    local varname = "XMLViewer_js"
-    xxdFile(varname, input, output)
-    print("XMLViewerJS generate "..output)
-    output = outputDir.."XMLViewerCSS.h"
-    input = webCoreDir.."xml/XMLViewer.css"
-    varname = "XMLViewer_css"
-    xxdFile(varname, input, output)
-    print("XMLViewerCSS generate "..output)
-end
-
-
-function makeWebKitFontFamilyNames(ctx)
-    local webCoreDir = ctx.srcDir
     local outputDir = ctx.outputDir
     local args = {
         "--fonts",
@@ -814,8 +739,7 @@ function generateJSBinding(ctx, input)
         "css",
         "p2p",
         "page",
-        "notifications",
-        "xml",
+        "notifications",
     }) do
         table.insert(args, "--include")
         table.insert(args, ctx.srcDir..includeDir)
@@ -842,10 +766,8 @@ function makeJSBinding(ctx, inputs)
         "p2p",
         "page",
         "plugins",
-        "storage",
-        "xml",
-        "workers",
-        "websockets"
+        "storage",
+        "workers",
     }
     local srcDir = ctx.srcDir
     for _, f in ipairs(inputs) do
@@ -912,9 +834,7 @@ function generateAll(ctx)
     )
     cssyy(
         ctx
-    )
-    xpathyy(
-        ctx
+    )        ctx
     )
     makeHTMLEntityTable(
         ctx
@@ -928,15 +848,11 @@ function generateAll(ctx)
     )
     makeHTMLElementFactory(
         ctx
-    )
-    makeXMLNSNames(
-        ctx
+    )        ctx
     )
     makeMathMLElementFactory(
         ctx
-    )
-    makeXMLViewerJS(
-        ctx
+    )        ctx
     )
     makeWebKitFontFamilyNames(
         ctx
@@ -1013,10 +929,6 @@ function copyHeaders(ctx)
         { "rendering/style/*.h","include/WebCore"},
         { "editing/*.h","include/WebCore"},
         { "dom/*.h","include/WebCore"},
-        { "xml/parser/*.h","include/WebCore"},
-        { "xml/*.h","include/WebCore"},
-        { "storage/*.h","include/WebCore"},
-        { "websockets/*.h","include/WebCore"},
         { "workers/*.h","include/WebCore"},
         { "ForwardingHeaders/bindings/*.h","include/WebCore/ForwardingHeaders/bindings"},
         { "ForwardingHeaders/interpreter/*.h", "include/WebCore/ForwardingHeaders/interpreter" },

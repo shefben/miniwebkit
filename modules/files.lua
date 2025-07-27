@@ -1138,38 +1138,7 @@ local WEBCORE_SRC_FILES = {
     "WebCore/rendering/mathml/RenderMathMLSquareRoot.cpp",
     "WebCore/rendering/mathml/RenderMathMLSubSup.cpp",
     "WebCore/rendering/mathml/RenderMathMLUnderOver.cpp",
-    "WebCore/rendering/style/StyleAllInOne.cpp",
-    "WebCore/xml/DOMParser.cpp",
-    "WebCore/xml/NativeXPathNSResolver.cpp",
-    "WebCore/xml/XMLErrors.cpp",
-    "WebCore/xml/XMLHttpRequest.cpp",
-    "WebCore/xml/XMLHttpRequestProgressEventThrottle.cpp",
-    "WebCore/xml/XMLHttpRequestUpload.cpp",
-    "WebCore/xml/XMLSerializer.cpp",
-    "WebCore/xml/XMLTreeViewer.cpp",
-    "WebCore/xml/XPathEvaluator.cpp",
-    "WebCore/xml/XPathExpression.cpp",
-    "WebCore/xml/XPathExpressionNode.cpp",
-    "WebCore/xml/XPathFunctions.cpp",
-    "WebCore/xml/XPathNodeSet.cpp",
-    "WebCore/xml/XPathNSResolver.cpp",
-    "WebCore/xml/XPathParser.cpp",
-    "WebCore/xml/XPathPath.cpp",
-    "WebCore/xml/XPathPredicate.cpp",
-    "WebCore/xml/XPathResult.cpp",
-    "WebCore/xml/XPathStep.cpp",
-    "WebCore/xml/XPathUtil.cpp",
-    "WebCore/xml/XPathValue.cpp",
-    "WebCore/xml/XPathVariableReference.cpp",
-    "WebCore/xml/XSLImportRule.cpp",
-    "WebCore/xml/XSLStyleSheetLibxslt.cpp",
-    "WebCore/xml/XSLTExtensions.cpp",
-    "WebCore/xml/XSLTProcessor.cpp",
-    "WebCore/xml/XSLTProcessorLibxslt.cpp",
-    "WebCore/xml/XSLTUnicodeSort.cpp",
-    "WebCore/xml/parser/NewXMLDocumentParser.cpp",
-    "WebCore/xml/parser/XMLDocumentParserLibxml2.cpp",
-    "WebCore/xml/parser/XMLTreeBuilder.cpp",
+    "WebCore/rendering/style/StyleAllInOne.cpp",
     "WebCore/dom/DOMAllInOne.cpp",
     "WebCore/dom/NamedNodeMap.cpp",
     "WebCore/dom/Node.cpp",
@@ -1444,15 +1413,7 @@ local WEBCORE_SRC_FILES = {
     "WebCore/inspector/ScriptCallStack.cpp",
     "WebCore/inspector/TimelineRecordFactory.cpp",
     "WebCore/inspector/WorkerDebuggerAgent.cpp",
-    "WebCore/inspector/WorkerInspectorController.cpp",
-    "WebCore/websockets/ThreadableWebSocketChannel.cpp",
-    "WebCore/websockets/ThreadableWebSocketChannelClientWrapper.cpp",
-    "WebCore/websockets/WebSocket.cpp",
-    "WebCore/websockets/WebSocketChannel.cpp",
-    "WebCore/websockets/WebSocketHandshake.cpp",
-    "WebCore/websockets/WebSocketHandshakeRequest.cpp",
-    "WebCore/websockets/WebSocketHandshakeResponse.cpp",
-    "WebCore/websockets/WorkerThreadableWebSocketChannel.cpp",
+    "WebCore/inspector/WorkerInspectorController.cpp",
     "WebCore/mathml/MathMLElement.cpp",
     "WebCore/mathml/MathMLInlineContainerElement.cpp",
     "WebCore/mathml/MathMLMathElement.cpp",
