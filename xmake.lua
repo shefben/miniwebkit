@@ -697,7 +697,6 @@ local FEATURE_DEFINES = {
     "ENABLE_INSPECTOR=0"
 }
 
-
 local WEBCORE_BUILD_FILES = {
     "obj/WebCore/DerivedSources/ColorData.cpp",
     "obj/WebCore/DerivedSources/CSSGrammar.cpp",
@@ -1260,8 +1259,6 @@ local WEBCORE_SRC_FILES = {
     "WebCore/workers/WorkerRunLoop.cpp",
     "WebCore/workers/WorkerScriptLoader.cpp",
     "WebCore/workers/WorkerThread.cpp",
-    "WebCore/notifications/Notification.cpp",
-    "WebCore/notifications/NotificationCenter.cpp",
     "WebCore/editing/EditingAllInOne.cpp",
     "WebCore/html/canvas/ArrayBuffer.cpp",
     "WebCore/html/canvas/ArrayBufferView.cpp",
@@ -1419,13 +1416,6 @@ local WEBCORE_SRC_FILES = {
     "WebCore/plugins/win/PluginMessageThrottlerWin.cpp",
     "WebCore/plugins/win/PluginPackageWin.cpp",
     "WebCore/plugins/win/PluginViewWin.cpp",
-    "WebCore/history/BackForwardController.cpp",
-    "WebCore/history/BackForwardListImpl.cpp",
-    "WebCore/history/CachedFrame.cpp",
-    "WebCore/history/CachedPage.cpp",
-    "WebCore/history/HistoryItem.cpp",
-    "WebCore/history/PageCache.cpp",
-    "WebCore/history/cf/HistoryPropertyList.cpp",
     "WebCore/storage/AbstractDatabase.cpp",
     "WebCore/storage/ChangeVersionWrapper.cpp",
     "WebCore/storage/Database.cpp",
@@ -1583,7 +1573,6 @@ target("WebCore")
         -- "WebCore/bindings/js/specialization",
         "WebCore/dom",
         "WebCore/dom/default",
-        "WebCore/history",
         "WebCore/html",
         "WebCore/html/canvas",
         "WebCore/html/parser",
@@ -1596,7 +1585,6 @@ target("WebCore")
         "WebCore/loader/cache",
         "WebCore/loader/icon",
         "WebCore/mathml",
-        "WebCore/notifications",
         "WebCore/page",
         "WebCore/page/win",
         "WebCore/platform",
@@ -1614,12 +1602,14 @@ target("WebCore")
         "WebCore/platform/graphics/transforms",
         "WebCore/platform/text",
         "WebCore/platform/text/transcoder",
-        "WebCore/platform/graphics/win",
+        "WebCore/platform/graphics/win",
+
         "WebCore/plugins",
         "WebCore/plugins/win",
         "WebCore/testing",
         -- "WebCore/wml",
-        "WebCore/storage",
+        "WebCore/storage",
+
         "WebCore/workers",
         "WebCore/ForwardingHeaders",
         "WebCore/platform/graphics/cairo",

@@ -739,7 +739,6 @@ function generateJSBinding(ctx, input)
         "css",
         "p2p",
         "page",
-        "notifications",
     }) do
         table.insert(args, "--include")
         table.insert(args, ctx.srcDir..includeDir)
@@ -762,12 +761,13 @@ function makeJSBinding(ctx, inputs)
         "html",
         "html/canvas",
         "loader/appcache",
-        "notifications",
         "p2p",
         "page",
         "plugins",
-        "storage",
-        "workers",
+        "storage",
+
+        "workers",
+
     }
     local srcDir = ctx.srcDir
     for _, f in ipairs(inputs) do
@@ -834,7 +834,8 @@ function generateAll(ctx)
     )
     cssyy(
         ctx
-    )        ctx
+    )
+        ctx
     )
     makeHTMLEntityTable(
         ctx
@@ -848,11 +849,13 @@ function generateAll(ctx)
     )
     makeHTMLElementFactory(
         ctx
-    )        ctx
+    )
+        ctx
     )
     makeMathMLElementFactory(
         ctx
-    )        ctx
+    )
+        ctx
     )
     makeWebKitFontFamilyNames(
         ctx
@@ -894,11 +897,8 @@ function copyHeaders(ctx)
         { "loader/archive/cf/*.h","include/WebCore"},
         { "loader/cache/*.h","include/WebCore"},
         { "loader/icon/*.h","include/WebCore"},
-        { "history/*.h","include/WebCore"},
-        { "history/cf/*.h","include/WebCore"},
         { "html/*.h","include/WebCore"},
         { "html/parser/*.h","include/WebCore"},
-        { "notifications/*.h","include/WebCore"},
         { "css/*.h","include/WebCore"},
         { "platform/*.h","include/WebCore"},
         { "platform/cf/*.h","include/WebCore"},

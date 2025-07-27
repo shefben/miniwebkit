@@ -31,7 +31,9 @@
 #include "Frame.h"
 
 #include "ApplyStyleCommand.h"
+#if ENABLE(HISTORY)
 #include "BackForwardController.h"
+#endif
 #include "CSSComputedStyleDeclaration.h"
 #include "CSSMutableStyleDeclaration.h"
 #include "CSSProperty.h"
@@ -1023,8 +1025,10 @@ void Frame::setPageAndTextZoomFactors(float pageZoomFactor, float textZoomFactor
             view->layout();
     }
 
+#if ENABLE(HISTORY)
     if (page->mainFrame() == this)
         page->backForward()->markPagesForFullStyleRecalc();
+#endif
 }
 
 float Frame::frameScaleFactor() const

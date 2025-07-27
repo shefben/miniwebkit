@@ -246,12 +246,16 @@ void ContextMenuController::contextMenuItemSelected(ContextMenuItem* item)
         frame->editor()->copy();
         break;
     case ContextMenuItemTagGoBack:
+#if ENABLE(HISTORY)
         if (Page* page = frame->page())
             page->backForward()->goBackOrForward(-1);
+#endif
         break;
     case ContextMenuItemTagGoForward:
+#if ENABLE(HISTORY)
         if (Page* page = frame->page())
             page->backForward()->goBackOrForward(1);
+#endif
         break;
     case ContextMenuItemTagStop:
         frame->loader()->stop();

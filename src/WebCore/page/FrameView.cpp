@@ -28,7 +28,9 @@
 #include "FrameView.h"
 
 #include "AXObjectCache.h"
+#if ENABLE(HISTORY)
 #include "BackForwardController.h"
+#endif
 #include "CSSStyleSelector.h"
 #include "CachedResourceLoader.h"
 #include "Chrome.h"
