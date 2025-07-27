@@ -2,7 +2,6 @@
 #include "wkeChromeClient.h"
 #include "wkeFrameLoaderClient.h"
 #include "wkeContextMenuClient.h"
-#include "wkeInspectorClient.h"
 #include "wkeEditorClient.h"
 #include "wkeDragClient.h"
 
@@ -1402,7 +1401,6 @@ namespace wke
         WebCore::Page::PageClients pageClients;
         pageClients.chromeClient = new ChromeClient(this);
         pageClients.contextMenuClient = new ContextMenuClient;
-        pageClients.inspectorClient = new InspectorClient;
         pageClients.editorClient = new EditorClient;
         pageClients.dragClient = new DragClient;
         auto _settings = wke::wkeSettingsManeger::Instance();

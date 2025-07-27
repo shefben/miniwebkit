@@ -760,33 +760,6 @@ function makeXMLViewerJS(ctx)
     print("XMLViewerCSS generate "..output)
 end
 
-function makeInjectedScriptSource(ctx)
-    local defines = ctx.defines
-    local webCoreDir = ctx.srcDir
-    local outputDir = ctx.outputDir
-    local output = outputDir.."InjectedScriptSource.h"
-    local input = webCoreDir.."inspector/InjectedScriptSource.js"
-    local varname = "InjectedScriptSource_js"
-    xxdFile(varname, input, output)
-    print("InjectedScriptSource generate "..output)
-
-    output = outputDir.."InspectorFrontend.h"
-    os.runv(
-        "python",
-        {
-            webCoreDir.."inspector/CodeGeneratorInspector.py",
-            webCoreDir.."inspector/Inspector.json",
-            "--output_h_dir",
-            outputDir,
-            "--output_cpp_dir",
-            outputDir,
-            "--defines",
-            "\""..sjoin(defines, " ").." LANGUAGE_JAVASCRIPT\""
-        }
-    )
-    print("InspectorFrontend generate "..output)
-end
-
 
 function makeWebKitFontFamilyNames(ctx)
     local webCoreDir = ctx.srcDir
@@ -822,20 +795,6 @@ function makeWebCoreHeaderDetection(ctx)
     end
 end
 
-function InspectorProtocolVersion(ctx)
-    local output = ctx.outputDir.."InspectorProtocolVersion.h"
-    local args = {
-        ctx.srcDir.."inspector/generate-inspector-protocol-version",
-        "-o",
-        output,
-        ctx.srcDir.."inspector/Inspector.json"
-    }
-    os.runv(
-        "python",
-        args
-    )
-    print("InspectorProtocolVersion generate "..output)
-end
 
 function generateJSBinding(ctx, input)
     local args = {
@@ -882,7 +841,6 @@ function makeJSBinding(ctx, inputs)
         "fileapi",
         "html",
         "html/canvas",
-        "inspector",
         "loader/appcache",
         "notifications",
         "p2p",
@@ -999,14 +957,10 @@ function generateAll(ctx)
     makeXMLViewerJS(
         ctx
     )
-    makeInjectedScriptSource(
-        ctx
-    )
     makeWebKitFontFamilyNames(
         ctx
     )
     makeWebCoreHeaderDetection(ctx)
-    InspectorProtocolVersion(ctx)
     makeJSBinding(ctx, JS_DOM_IDL)
 end
 
@@ -1037,7 +991,6 @@ function copyHeaders(ctx)
         { "config.h","include/WebCore"},
         { "accessibility/*.h","include/WebCore"},
         { "accessibility/win/*.h","include/WebCore"},
-        { "inspector/*.h","include/WebCore"},
         { "loader/*.h","include/WebCore"},
         { "loader/appcache/*.h","include/WebCore"},
         { "loader/archive/*.h","include/WebCore"},

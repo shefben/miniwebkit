@@ -703,7 +703,8 @@ local FEATURE_DEFINES = {
     "ENABLE_SVG_FONTS",
     "ENABLE_WEB_SOCKETS",
     "ENABLE_WORKERS",
-    "ENABLE_XSLT"
+    "ENABLE_XSLT",
+    "ENABLE_INSPECTOR=0"
 }
 
 
@@ -1539,18 +1540,6 @@ local WEBCORE_SRC_FILES = {
     "WebCore/storage/StorageNamespaceImpl.cpp",
     "WebCore/storage/StorageSyncManager.cpp",
     "WebCore/storage/StorageTracker.cpp",
-    "WebCore/bridge/c/c_class.cpp",
-    "WebCore/bridge/c/c_instance.cpp",
-    "WebCore/bridge/c/c_runtime.cpp",
-    "WebCore/bridge/c/c_utility.cpp",
-    "WebCore/bridge/c/CRuntimeObject.cpp",
-    "WebCore/bridge/IdentifierRep.cpp",
-    "WebCore/bridge/NP_jsobject.cpp",
-    "WebCore/bridge/npruntime.cpp",
-    "WebCore/bridge/runtime_array.cpp",
-    "WebCore/bridge/runtime_method.cpp",
-    "WebCore/bridge/runtime_object.cpp",
-    "WebCore/bridge/runtime_root.cpp",
     "WebCore/inspector/ConsoleMessage.cpp",
     "WebCore/inspector/ContentSearchUtils.cpp",
     "WebCore/inspector/DOMNodeHighlighter.cpp",
@@ -1846,7 +1835,6 @@ target("wke")
         "wkeDragClient.cpp",
         "wkeEditorClient.cpp",
         "wkeFrameLoaderClient.cpp",
-        "wkeInspectorClient.cpp",
         "wkePlatformStrategies.cpp",
         "wkePopupMenu.cpp",
         "wkeString.cpp",
