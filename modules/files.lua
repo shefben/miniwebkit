@@ -639,14 +639,6 @@ local WEBCORE_BUILD_FILES = {
 
 local WEBCORE_SRC_FILES = {
     "WebCore/DerivedSources.cpp",
-    "WebCore/accessibility/AccessibilityAllInOne.cpp",
-    "WebCore/accessibility/AccessibilityMenuList.cpp",
-    "WebCore/accessibility/AccessibilityMenuListOption.cpp",
-    "WebCore/accessibility/AccessibilityMenuListPopup.cpp",
-    "WebCore/accessibility/AccessibilityMockObject.cpp",
-    "WebCore/accessibility/AccessibilitySpinButton.cpp",
-    "WebCore/accessibility/win/AccessibilityObjectWin.cpp",
-    "WebCore/accessibility/win/AXObjectCacheWin.cpp",
     "WebCore/page/BarInfo.cpp",
     "WebCore/page/Chrome.cpp",
     "WebCore/page/Console.cpp",

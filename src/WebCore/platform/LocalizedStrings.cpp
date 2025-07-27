@@ -583,15 +583,6 @@ String allFilesText()
 #endif
 
 #if PLATFORM(MAC)
-String builtInPDFPluginName()
-{
-    return localizationStrategy()->builtInPDFPluginName();
-}
-
-String pdfDocumentTypeDescription()
-{
-    return localizationStrategy()->pdfDocumentTypeDescription();
-}
 
 String keygenMenuItem512()
 {
