@@ -617,74 +617,7 @@ end
 
 end
 
-function makeMathMLElementFactory(ctx)
-    local webCoreDir = ctx.srcDir
-    local outputDir = ctx.outputDir
-    local output = outputDir.."MathMLElementFactory.cpp"
-    local args = {
-        "--tags",
-        webCoreDir.."mathml/mathtags.in",
-        "--attrs",
-        webCoreDir.."mathml/mathattrs.in",
-        "--outputDir",
-        outputDir,
-        "--factory",
-        "--wrapperFactory"
-    }
-    runPerl(
-        webCoreDir,
-        webCoreDir.."dom/make_names.pl",
-        nil,
-        args
-    )
-    print("MathMLElementFactory generate "..output)
-end
-
-
-function makeSVGElementFactory(ctx)
-    local defines = ctx.defines
-    local webCoreDir = ctx.srcDir
-    local outputDir = ctx.outputDir
-    local defineHas = ctx.defineHas
-    local flags = {}
-    local checkDefines = {
-        "ENABLE_FILTERS"
-    }
-    for _, define in ipairs(checkDefines) do
-        if (defineHas[define] == 1) then
-            table.insert(flags, define.."=1")
-        end
-    end
-    
-    local output = outputDir.."SVGElementFactory.cpp"
-    local args = {
-        "--tags",
-        webCoreDir.."svg/svgtags.in",
-        "--attrs",
-        webCoreDir.."svg/svgattrs.in",
-        "--outputDir",
-        outputDir,
-        "--factory",
-        "--wrapperFactory"
-    }
-    if (#flags > 0) then
-        table.insert(
-            args,
-            "--extraDefines"
-        )
-        table.insert(
-            args,
-            sjoin(flags, " ")
-        )
-    end
-    runPerl(
-        webCoreDir,
-        webCoreDir.."dom/make_names.pl",
-        nil,
-        args
-    )
-    print("SVGElementFactory generate "..output)
-end
+function makeWebKitFontFamilyNames(ctx)
     local outputDir = ctx.outputDir
     local args = {
         "--fonts",
@@ -809,9 +742,6 @@ function generateAll(ctx)
     local makepropInput = {
         WebCoreDir.."css/CSSPropertyNames.in",
     }
-    if (defineHas["ENABLE_MATHML"] == 1) then
-        table.insert(UserAgentStyleSheetsInput, WebCoreDir.."css/mathml.css")
-    end
     if (defineHas["ENABLE_FULLSCREEN_API"] == 1) then
         table.insert(UserAgentStyleSheetsInput, WebCoreDir.."css/fullscreen.css")
         table.insert(UserAgentStyleSheetsInput, WebCoreDir.."css/fullscreenQuickTime.css")
@@ -845,16 +775,6 @@ function generateAll(ctx)
         UserAgentStyleSheetsInput
     )
     makeEventFactory(
-        ctx
-    )
-    makeHTMLElementFactory(
-        ctx
-    )
-        ctx
-    )
-    makeMathMLElementFactory(
-        ctx
-    )
         ctx
     )
     makeWebKitFontFamilyNames(
