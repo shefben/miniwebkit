@@ -625,8 +625,6 @@ target("cflite")
 
 target("wtf")
     set_kind("static")
-    set_pcxxheader("./src/JavaScriptCore/stdafx.h")
-    add_files("./src/JavaScriptCore/stdafx.cpp")
     add_defines(
         "__STD_C",
         "WTF_PLATFORM_WIN_CAIRO=1",
@@ -654,7 +652,6 @@ target("wtf")
         "ENABLE_FILTERS",
         "ENABLE_GEOLOCATION",
         "ENABLE_ICONDATABASE",
-        "ENABLE_JAVASCRIPT_DEBUGGER",
         "ENABLE_MATHML",
         "ENABLE_METER_TAG",
         "ENABLE_SHARED_WORKERS",
@@ -679,77 +676,7 @@ target("wtf")
     }) do
         add_includedirs("./3rd/" .. dir)
     end
-    for _, dir in ipairs({
-        "",
-        "wtf",
-        "wtf/threads",
-        "wtf/win",
-        "wtf/unicode",
-        "runtime",
-        "interpreter",
-        "dfg",
-        "jit",
-        "heap",
-        "assembler"
-    }) do
-        add_includedirs("./src/JavaScriptCore/" .. dir)
-    end
-    for _, f in ipairs({
-        "win/MainThreadWin.cpp",
-        "win/OwnPtrWin.cpp",
-        "unicode/UTF8.cpp",
-        "unicode/icu/CollatorICU.cpp",
-        "text/AtomicString.cpp",
-        "text/CString.cpp",
-        "text/StringBuilder.cpp",
-        "text/StringImpl.cpp",
-        "text/StringStatics.cpp",
-        "text/WTFString.cpp",
-        "dtoa/bignum-dtoa.cc",
-        "dtoa/bignum.cc",
-        "dtoa/cached-powers.cc",
-        "dtoa/diy-fp.cc",
-        "dtoa/double-conversion.cc",
-        "dtoa/fast-dtoa.cc",
-        "dtoa/fixed-dtoa.cc",
-        "dtoa/strtod.cc",
-        "threads/win/BinarySemaphoreWin.cpp",
-        "threads/BinarySemaphore.cpp",
-        "Assertions.cpp",
-        "BitVector.cpp",
-        "ByteArray.cpp",
-        "CryptographicallyRandomNumber.cpp",
-        "DecimalNumber.cpp",
-        "DynamicAnnotations.cpp",
-        "dtoa.cpp",
-        "FastMalloc.cpp",
-        "HashTable.cpp",
-        "MainThread.cpp",
-        "MetaAllocator.cpp",
-        "MD5.cpp",
-        "NullPtr.cpp",
-        "OSAllocatorWin.cpp",
-        "OSRandomSource.cpp",
-        "PageAllocationAligned.cpp",
-        "PageBlock.cpp",
-        "ParallelJobsGeneric.cpp",
-        "RandomNumber.cpp",
-        "RefCountedLeakCounter.cpp",
-        "SHA1.cpp",
-        "SizeLimits.cpp",
-        "StackBounds.cpp",
-        "StringExtras.cpp",
-        "TCSystemAlloc.cpp",
-        "Threading.cpp",
-        "ThreadingWin.cpp",
-        "ThreadSpecificWin.cpp",
-        "TypeTraits.cpp",
-        "WTFThreadData.cpp",
-        "DateMath.cpp",
-        "CurrentTime.cpp"
-    }) do
-        add_files("./src/JavaScriptCore/wtf/"..f)
-    end
+    for _, dir in ipairs({}) do end
     add_links(
         "gdi32",
         "user32",
@@ -760,280 +687,6 @@ target("wtf")
         "pthread"
     )
 
-target("JavaScriptCore")
-    set_kind("static")
-    set_pcxxheader("./src/JavaScriptCore/stdafx.h")
-    add_files("./src/JavaScriptCore/stdafx.cpp")
-    add_cxflags("/utf-8", {force = true})
-    add_defines(
-        "__STD_C",
-        "WTF_PLATFORM_WIN_CAIRO=1",
-        "WTF_CHANGES=1",
-        "_TIMESPEC_DEFINED",
-        "CAIRO_WIN32_STATIC_BUILD",
-        "NDEBUG",
-        "WIN32",
-        "_WINDOWS",
-        "_CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES=1",
-        "_HAS_EXCEPTIONS=0",
-        "BUILDING_JavaScriptCore",
-        "JS_NO_EXPORT",
-        "CURL_STATICLIB",
-        "LIBXML_STATIC",
-        "LIBXSLT_STATIC",
-        "PTW32_STATIC_LIB",
-        "UCONFIG_NO_COLLATION=1",
-        "U_STATIC_IMPLEMENTATION",
-        "ENABLE_CHANNEL_MESSAGING",
-        "ENABLE_CLIENT_BASED_GEOLOCATION",
-        "ENABLE_SQL_DATABASE",
-        "ENABLE_DATALIST",
-        "ENABLE_DETAILS",
-        "ENABLE_FILTERS",
-        "ENABLE_GEOLOCATION",
-        "ENABLE_ICONDATABASE",
-        "ENABLE_JAVASCRIPT_DEBUGGER",
-        "ENABLE_MATHML",
-        "ENABLE_METER_TAG",
-        "ENABLE_SHARED_WORKERS",
-        "ENABLE_SVG",
-        "ENABLE_SVG_FONTS",
-        "ENABLE_WEB_SOCKETS",
-        "ENABLE_WORKERS",
-        "ENABLE_XSLT",
-        "_UNICODE",
-        "UNICODE"
-        -- "ENABLE_COMPARE_AND_SWAP"
-    )
-    add_includedirs("3rd")
-    for _, dir in ipairs({
-        "pthreads",
-        "include"
-    }) do
-        add_includedirs("./3rd/" .. dir)
-    end
-    set_languages("c++20")
-    before_build(function (target)
-        JSGenerateDir = "./build/JavaScriptCore/generated/"
-        JSDir = "./src/JavaScriptCore/"
-        os.mkdir(JSGenerateDir.."runtime")
-        os.run("python ".. JSDir .. "create_regex_tables " .. JSGenerateDir .. "RegExpJitTables.h")
-
-        -- KeywordLookup.h
-        local outdata, errdata = os.iorun("python ".. JSDir .. "KeywordLookupGenerator.py " .. JSDir .."parser/Keywords.table")
-        io.writefile(JSGenerateDir .. "KeywordLookup.h", outdata)
-
-        -- Lexer.lut.h
-        local create_hash_exec = JSDir.."create_hash_table"
-        outdata, errdata = os.iorun("perl ".. create_hash_exec .. " " .. JSDir .."parser/Keywords.table")
-        io.writefile(JSGenerateDir .. "Lexer.lut.h", outdata)
-
-        -- %.lut.h
-        for _, f in ipairs({
-            "ArrayConstructor.cpp",
-            "ArrayPrototype.cpp",
-            "BooleanPrototype.cpp",
-            "DateConstructor.cpp",
-            "DatePrototype.cpp",
-            "ErrorPrototype.cpp",
-            "JSGlobalObject.cpp",
-            "JSONObject.cpp",
-            "MathObject.cpp",
-            "NumberConstructor.cpp",
-            "NumberPrototype.cpp",
-            "ObjectConstructor.cpp",
-            "ObjectPrototype.cpp",
-            "RegExpConstructor.cpp",
-            "RegExpObject.cpp",
-            "RegExpPrototype.cpp",
-            "StringConstructor.cpp",
-            "StringPrototype.cpp"
-        }) do
-            outdata, errdata = os.iorun("perl ".. create_hash_exec .. " " .. JSDir .. "runtime/" .. f .. " -i")
-            io.writefile(JSGenerateDir .. "runtime/" .. string.sub(f, 0, -4) .. "lut.h", outdata)
-        end
-    end)
-    for _, dir in ipairs({
-        "..",
-        "",
-        "assembler",
-        "bytecode",
-        "bytecompiler",
-        "heap",
-        "dfg",
-        "debugger",
-        "interpreter",
-        "jit",
-        "parser",
-        "profiler",
-        "runtime",
-        "wtf",
-        "wtf/gobject",
-        "wtf/win",
-        "wtf/unicode",
-        "yarr",
-        "API",
-        "ForwardingHeaders"
-    }) do
-        add_includedirs("./src/JavaScriptCore/" .. dir)
-    end
-    add_includedirs(
-        "./build/JavaScriptCore/generated",
-        "./build/JavaScriptCore/generated/runtime"
-    )
-    for _, f in ipairs({
-        "runtime/ArgList.cpp",
-        "runtime/Arguments.cpp",
-        "runtime/ArrayConstructor.cpp",
-        "runtime/ArrayPrototype.cpp",
-        "runtime/BooleanConstructor.cpp",
-        "runtime/BooleanObject.cpp",
-        "runtime/BooleanPrototype.cpp",
-        "runtime/CallData.cpp",
-        "runtime/CommonIdentifiers.cpp",
-        "runtime/Completion.cpp",
-        "runtime/ConstructData.cpp",
-        "runtime/DateConstructor.cpp",
-        "runtime/DateConversion.cpp",
-        "runtime/DateInstance.cpp",
-        "runtime/DatePrototype.cpp",
-        "runtime/Error.cpp",
-        "runtime/ErrorConstructor.cpp",
-        "runtime/ErrorInstance.cpp",
-        "runtime/ErrorPrototype.cpp",
-        "runtime/ExceptionHelpers.cpp",
-        "runtime/Executable.cpp",
-        "runtime/FunctionConstructor.cpp",
-        "runtime/FunctionPrototype.cpp",
-        "runtime/GCActivityCallback.cpp",
-        "runtime/GetterSetter.cpp",
-        "runtime/Heuristics.cpp",
-        "runtime/Identifier.cpp",
-        "runtime/InitializeThreading.cpp",
-        "runtime/InternalFunction.cpp",
-        "runtime/JSActivation.cpp",
-        "runtime/JSArray.cpp",
-        "runtime/JSByteArray.cpp",
-        "runtime/JSCell.cpp",
-        "runtime/JSFunction.cpp",
-        "runtime/JSBoundFunction.cpp",
-        "runtime/JSGlobalData.cpp",
-        "runtime/JSGlobalObject.cpp",
-        "runtime/JSGlobalObjectFunctions.cpp",
-        "runtime/JSLock.cpp",
-        "runtime/JSNotAnObject.cpp",
-        "runtime/JSObject.cpp",
-        "runtime/JSONObject.cpp",
-        "runtime/JSPropertyNameIterator.cpp",
-        "runtime/JSStaticScopeObject.cpp",
-        "runtime/JSString.cpp",
-        "runtime/JSValue.cpp",
-        "runtime/JSVariableObject.cpp",
-        "runtime/JSWrapperObject.cpp",
-        "runtime/LiteralParser.cpp",
-        "runtime/Lookup.cpp",
-        "runtime/MathObject.cpp",
-        "runtime/NativeErrorConstructor.cpp",
-        "runtime/NativeErrorPrototype.cpp",
-        "runtime/NumberConstructor.cpp",
-        "runtime/NumberObject.cpp",
-        "runtime/NumberPrototype.cpp",
-        "runtime/ObjectConstructor.cpp",
-        "runtime/ObjectPrototype.cpp",
-        "runtime/Operations.cpp",
-        "runtime/PropertyDescriptor.cpp",
-        "runtime/PropertyNameArray.cpp",
-        "runtime/PropertySlot.cpp",
-        "runtime/RegExp.cpp",
-        "runtime/RegExpCache.cpp",
-        "runtime/RegExpConstructor.cpp",
-        "runtime/RegExpObject.cpp",
-        "runtime/RegExpPrototype.cpp",
-        "runtime/ScopeChain.cpp",
-        "runtime/SamplingCounter.cpp",
-        "runtime/SmallStrings.cpp",
-        "runtime/StrictEvalActivation.cpp",
-        "runtime/StringConstructor.cpp",
-        "runtime/StringObject.cpp",
-        "runtime/StringPrototype.cpp",
-        "runtime/StringRecursionChecker.cpp",
-        "runtime/Structure.cpp",
-        "runtime/StructureChain.cpp",
-        "runtime/TimeoutChecker.cpp",
-        "runtime/UString.cpp",
-        "runtime/JSAPIValueWrapper.cpp",
-        "API/JSBase.cpp",
-        "API/JSCallbackConstructor.cpp",
-        "API/JSCallbackFunction.cpp",
-        "API/JSCallbackObject.cpp",
-        "API/JSClassRef.cpp",
-        "API/JSContextRef.cpp",
-        "API/JSObjectRef.cpp",
-        "API/JSStringRef.cpp",
-        "API/JSStringRefBSTR.cpp",
-        "API/JSStringRefCF.cpp",
-        "API/JSValueRef.cpp",
-        "API/JSWeakObjectMapRefPrivate.cpp",
-        "API/OpaqueJSString.cpp",
-        "profiler/Profile.cpp",
-        "profiler/ProfileGenerator.cpp",
-        "profiler/ProfileNode.cpp",
-        "profiler/Profiler.cpp",
-        "bytecode/CodeBlock.cpp",
-        "bytecode/JumpTable.cpp",
-        "bytecode/Opcode.cpp",
-        "bytecode/PredictedType.cpp",
-        "bytecode/SamplingTool.cpp",
-        "bytecode/StructureStubInfo.cpp",
-        "bytecode/ValueProfile.cpp",
-        "debugger/Debugger.cpp",
-        "debugger/DebuggerActivation.cpp",
-        "debugger/DebuggerCallFrame.cpp",
-        "yarr/YarrInterpreter.cpp",
-        "yarr/YarrJIT.cpp",
-        "yarr/YarrPattern.cpp",
-        "yarr/YarrSyntaxChecker.cpp",
-        "jit/ExecutableAllocator.cpp",
-        "jit/JIT.cpp",
-        "jit/JITArithmetic.cpp",
-        "jit/JITArithmetic32_64.cpp",
-        "jit/JITCall.cpp",
-        "jit/JITCall32_64.cpp",
-        "jit/JITOpcodes.cpp",
-        "jit/JITOpcodes32_64.cpp",
-        "jit/JITPropertyAccess.cpp",
-        "jit/JITPropertyAccess32_64.cpp",
-        "jit/JITStubs.cpp",
-        "jit/ThunkGenerators.cpp",
-        "interpreter/CallFrame.cpp",
-        "interpreter/Interpreter.cpp",
-        "interpreter/RegisterFile.cpp",
-        "bytecompiler/BytecodeGenerator.cpp",
-        "bytecompiler/NodesCodegen.cpp",
-        "parser/JSParser.cpp",
-        "parser/Lexer.cpp",
-        "parser/Nodes.cpp",
-        "parser/Parser.cpp",
-        "parser/ParserArena.cpp",
-        "parser/SourceProviderCache.cpp",
-        "heap/AllocationSpace.cpp",
-        "heap/ConservativeRoots.cpp",
-        "heap/MachineStackMarker.cpp",
-        "heap/MarkedBlock.cpp",
-        "heap/MarkedSpace.cpp",
-        "heap/MarkStack.cpp",
-        "heap/Heap.cpp",
-        "heap/HandleHeap.cpp",
-        "heap/HandleStack.cpp",
-        "heap/JettisonedCodeBlocks.cpp",
-        "heap/VTableSpectrum.cpp",
-        "heap/WriteBarrierSupport.cpp"
-    }) do
-        add_files("./src/JavaScriptCore/" .. f)
-    end
-    add_deps("wtf", "cflite")
-    add_links("oleaut32")
-
 local FEATURE_DEFINES = {
     "ENABLE_CHANNEL_MESSAGING",
     "ENABLE_CLIENT_BASED_GEOLOCATION",
@@ -1043,7 +696,6 @@ local FEATURE_DEFINES = {
     "ENABLE_FILTERS",
     "ENABLE_GEOLOCATION",
     "ENABLE_ICONDATABASE",
-    "ENABLE_JAVASCRIPT_DEBUGGER",
     "ENABLE_MATHML",
     "ENABLE_METER_TAG",
     "ENABLE_SHARED_WORKERS",
@@ -1089,10 +741,7 @@ local WEBCORE_BUILD_FILES = {
     "obj/WebCore/DerivedSources/XLinkNames.cpp",
     "obj/WebCore/DerivedSources/XMLNames.cpp",
     "obj/WebCore/DerivedSources/XMLNSNames.cpp",
-    "obj/WebCore/DerivedSources/XPathGrammar.cpp",
-    "include/private/JavaScriptCore/AtomicString.cpp",
-    "include/private/JavaScriptCore/StringImpl.cpp",
-    "include/private/JavaScriptCore/WTFString.cpp"
+    "obj/WebCore/DerivedSources/XPathGrammar.cpp"
 }
 
 
@@ -1810,16 +1459,6 @@ local WEBCORE_SRC_FILES = {
     "WebCore/bindings/generic/ActiveDOMCallback.cpp",
     "WebCore/bindings/generic/BindingSecurityBase.cpp",
     "WebCore/bindings/generic/RuntimeEnabledFeatures.cpp",
-    "WebCore/bindings/js/JSBindingsAllInOne.cpp",
-    "WebCore/bindings/js/JSDirectoryEntryCustom.cpp",
-    "WebCore/bindings/js/JSDirectoryEntrySyncCustom.cpp",
-    "WebCore/bindings/js/JSEntryCustom.cpp",
-    "WebCore/bindings/js/JSEntrySyncCustom.cpp",
-    "WebCore/bindings/js/JSFileReaderCustom.cpp",
-    "WebCore/bindings/js/JSRequestAnimationFrameCallbackCustom.cpp",
-    "WebCore/bindings/js/ScriptObject.cpp",
-    "WebCore/bindings/js/ScriptProfile.cpp",
-    "WebCore/bindings/js/ScriptValue.cpp",
     "WebCore/plugins/DOMMimeType.cpp",
     "WebCore/plugins/DOMMimeTypeArray.cpp",
     "WebCore/plugins/DOMPlugin.cpp",
@@ -1900,7 +1539,6 @@ local WEBCORE_SRC_FILES = {
     "WebCore/storage/StorageNamespaceImpl.cpp",
     "WebCore/storage/StorageSyncManager.cpp",
     "WebCore/storage/StorageTracker.cpp",
-    "WebCore/bridge/jsc/BridgeJSC.cpp",
     "WebCore/bridge/c/c_class.cpp",
     "WebCore/bridge/c/c_instance.cpp",
     "WebCore/bridge/c/c_runtime.cpp",
@@ -2016,7 +1654,6 @@ target("WebCore")
         webcore.copyHeaders(copyCtx)
     end)
     for _, dir in ipairs({
-        "JavaScriptCore/os-win32",
         "WebCore",
         "WebCore/accessibility",
         "WebCore/accessibility/win",
@@ -2032,7 +1669,6 @@ target("WebCore")
         "WebCore/rendering/svg",
         "WebCore/bindings",
         "WebCore/bindings/generic",
-        "WebCore/bindings/js",
         -- "WebCore/bindings/js/specialization",
         "WebCore/dom",
         "WebCore/dom/default",
@@ -2105,8 +1741,6 @@ target("WebCore")
         "include",
         "include/WebCore",
         "include/private",
-        "include/private/JavaScriptCore",
-        "include/JavaScriptCore",
         "include/WebCore/ForwardingHeaders/bindings",
         "include/WebCore/ForwardingHeaders/interpreter",
         "include/WebCore/ForwardingHeaders/parser",
@@ -2168,8 +1802,7 @@ target("WebCore")
     end
     add_deps(
         -- "cairo",
-        "wtf",
-        "JavaScriptCore"
+        "wtf"
         -- "zlib",
         -- "libpng"
     )
@@ -2255,7 +1888,6 @@ target("wke")
         "include",
         "include/private",
         "include/WebCore/ForwardingHeaders",
-        "include/JavaScriptCore",
         "obj/WebCore/DerivedSources",
         "include/WebCore/ForwardingHeaders/runtime",
         "include/WebCore/ForwardingHeaders/wtf"
@@ -2357,7 +1989,6 @@ target("test1")
         "include",
         "include/private",
         "include/WebCore/ForwardingHeaders",
-        "include/JavaScriptCore",
         "obj/WebCore/DerivedSources",
         "include/WebCore/ForwardingHeaders/runtime",
         "include/WebCore/ForwardingHeaders/wtf"
@@ -2385,7 +2016,6 @@ target("test")
     set_kind("binary")
     add_cxxflags("/D UNICODE")
     add_cxxflags("/utf-8", {force = true})
-    add_includedirs("./src/JavaScriptCore")
     add_includedirs("./3rd/include")
     add_files("./demos/string_ptr.cpp")
     add_deps("wtf")

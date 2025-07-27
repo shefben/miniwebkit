@@ -151,9 +151,6 @@ class DomainNameFixes:
 
     domain_define_name_map = {
         "Database": "ENABLE_SQL_DATABASE",
-        "Debugger": "ENABLE_JAVASCRIPT_DEBUGGER",
-        "DOMDebugger": "ENABLE_JAVASCRIPT_DEBUGGER",
-        "Profiler": "ENABLE_JAVASCRIPT_DEBUGGER",
         "Worker": "ENABLE_WORKERS",
     }
 
