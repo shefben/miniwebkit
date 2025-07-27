@@ -703,7 +703,6 @@ function makeSVGElementFactory(ctx)
     local defineHas = ctx.defineHas
     local flags = {}
     local checkDefines = {
-        "ENABLE_SVG_FONTS",
         "ENABLE_FILTERS"
     }
     for _, define in ipairs(checkDefines) do
@@ -817,7 +816,6 @@ function generateJSBinding(ctx, input)
         "page",
         "notifications",
         "xml",
-        "svg"
     }) do
         table.insert(args, "--include")
         table.insert(args, ctx.srcDir..includeDir)
@@ -847,8 +845,6 @@ function makeJSBinding(ctx, inputs)
         "storage",
         "xml",
         "workers",
-        "svg",
-        "testing",
         "websockets"
     }
     local srcDir = ctx.srcDir
@@ -891,11 +887,6 @@ function generateAll(ctx)
     local makepropInput = {
         WebCoreDir.."css/CSSPropertyNames.in",
     }
-    if (defineHas["ENABLE_SVG"] == 1) then
-        table.insert(makevalueInput,  WebCoreDir.."css/SVGCSSValueKeywords.in")
-        table.insert(makepropInput, WebCoreDir.."css/SVGCSSPropertyNames.in")
-        table.insert(UserAgentStyleSheetsInput, WebCoreDir.."css/svg.css")
-    end
     if (defineHas["ENABLE_MATHML"] == 1) then
         table.insert(UserAgentStyleSheetsInput, WebCoreDir.."css/mathml.css")
     end
@@ -942,9 +933,6 @@ function generateAll(ctx)
         ctx
     )
     makeMathMLElementFactory(
-        ctx
-    )
-    makeSVGElementFactory(
         ctx
     )
     makeXMLViewerJS(
@@ -997,7 +985,6 @@ function copyHeaders(ctx)
         { "notifications/*.h","include/WebCore"},
         { "css/*.h","include/WebCore"},
         { "platform/*.h","include/WebCore"},
-        { "platform/animation/*.h","include/WebCore"},
         { "platform/cf/*.h","include/WebCore"},
         { "platform/cf/win/*.h","include/WebCore"},
         { "platform/graphics/*.h","include/WebCore"},
@@ -1017,7 +1004,6 @@ function copyHeaders(ctx)
         { "platform/cairo/cairo/src/*.h","include/WebCore"},
         { "bindings/*.h","include/WebCore"},
         { "page/*.h","include/WebCore"},
-        { "page/animation/*.h","include/WebCore"},
         { "page/win/*.h","include/WebCore"},
         { "bridge/*.h","include/WebCore"},
         { "bridge/jsc/*.h","include/WebCore"},
@@ -1025,14 +1011,10 @@ function copyHeaders(ctx)
         { "plugins/win/*.h","include/WebCore"},
         { "rendering/*.h","include/WebCore"},
         { "rendering/style/*.h","include/WebCore"},
-        { "rendering/svg/*.h","include/WebCore"},
         { "editing/*.h","include/WebCore"},
         { "dom/*.h","include/WebCore"},
         { "xml/parser/*.h","include/WebCore"},
         { "xml/*.h","include/WebCore"},
-        { "svg/animation/*.h","include/WebCore"},
-        { "svg/properties/*.h","include/WebCore"},
-        { "svg/*.h","include/WebCore"},
         { "storage/*.h","include/WebCore"},
         { "websockets/*.h","include/WebCore"},
         { "workers/*.h","include/WebCore"},
