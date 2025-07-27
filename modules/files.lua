@@ -546,7 +546,48 @@ local DOM_CLASSES = {
     "XSLTProcessor"
 }
 
-local JS_DOM_IDL = table.filter(DOM_CLASSES, function (v) 
+local EXCLUDE_DOM_CLASSES = {
+    AudioBuffer = true,
+    AudioBufferCallback = true,
+    AudioBufferSourceNode = true,
+    AudioChannelMerger = true,
+    AudioChannelSplitter = true,
+    AudioContext = true,
+    AudioDestinationNode = true,
+    AudioGain = true,
+    AudioGainNode = true,
+    AudioListener = true,
+    AudioNode = true,
+    AudioPannerNode = true,
+    AudioParam = true,
+    AudioProcessingEvent = true,
+    AudioSourceNode = true,
+    BiquadFilterNode = true,
+    ConvolverNode = true,
+    DelayNode = true,
+    DynamicsCompressorNode = true,
+    HighPass2FilterNode = true,
+    JavaScriptAudioNode = true,
+    LowPass2FilterNode = true,
+    MediaElementAudioSourceNode = true,
+    OfflineAudioCompletionEvent = true,
+    RealtimeAnalyserNode = true,
+    WaveShaperNode = true,
+    HTMLAudioElement = true,
+    HTMLMediaElement = true,
+    LocalMediaStream = true,
+    MediaStream = true,
+    MediaStreamEvent = true,
+    MediaStreamList = true,
+    MediaStreamTrack = true,
+    MediaStreamTrackList = true,
+    MediaError = true
+}
+
+local JS_DOM_IDL = table.filter(DOM_CLASSES, function (v)
+    if EXCLUDE_DOM_CLASSES[v] then
+        return false
+    end
     return v ~= "MediaQueryListListener" and v ~= "EventListener" and v ~= "EventTarget"
 end)
 table.insert(JS_DOM_IDL, "JavaScriptCallFrame")
@@ -606,8 +647,6 @@ local WEBCORE_SRC_FILES = {
     "WebCore/accessibility/AccessibilitySpinButton.cpp",
     "WebCore/accessibility/win/AccessibilityObjectWin.cpp",
     "WebCore/accessibility/win/AXObjectCacheWin.cpp",
-    "WebCore/p2p/MediaStreamEvent.cpp",
-    "WebCore/p2p/PeerConnection.cpp",
     "WebCore/page/animation/AnimationBase.cpp",
     "WebCore/page/animation/AnimationController.cpp",
     "WebCore/page/BarInfo.cpp",
@@ -636,8 +675,6 @@ local WEBCORE_SRC_FILES = {
     "WebCore/page/animation/ImplicitAnimation.cpp",
     "WebCore/page/animation/KeyframeAnimation.cpp",
     "WebCore/page/Location.cpp",
-    "WebCore/page/MediaStreamController.cpp",
-    "WebCore/page/MediaStreamFrameController.cpp",
     "WebCore/page/MouseEventWithHitTestResults.cpp",
     "WebCore/page/Navigator.cpp",
     "WebCore/page/NavigatorBase.cpp",
@@ -750,7 +787,6 @@ local WEBCORE_SRC_FILES = {
     "WebCore/platform/LinkHash.cpp",
     "WebCore/platform/LocalizedStrings.cpp",
     "WebCore/platform/Logging.cpp",
-    "WebCore/platform/MediaStreamRegistry.cpp",
     "WebCore/platform/MemoryPressureHandler.cpp",
     "WebCore/platform/MIMETypeRegistry.cpp",
     "WebCore/platform/PlatformStrategies.cpp",
@@ -846,7 +882,6 @@ local WEBCORE_SRC_FILES = {
     "WebCore/platform/graphics/ImageBuffer.cpp",
     "WebCore/platform/graphics/ImageSource.cpp",
     "WebCore/platform/graphics/IntRect.cpp",
-    "WebCore/platform/graphics/MediaPlayer.cpp",
     "WebCore/platform/graphics/Path.cpp",
     "WebCore/platform/graphics/PathTraversalState.cpp",
     "WebCore/platform/graphics/Pattern.cpp",
@@ -873,7 +908,6 @@ local WEBCORE_SRC_FILES = {
     "WebCore/platform/graphics/win/IntPointWin.cpp",
     "WebCore/platform/graphics/win/IntRectWin.cpp",
     "WebCore/platform/graphics/win/IntSizeWin.cpp",
-    "WebCore/platform/graphics/win/MediaPlayerPrivateTaskTimer.cpp",
     "WebCore/platform/graphics/opentype/OpenTypeUtilities.cpp",
     "WebCore/platform/graphics/win/SimpleFontDataCairoWin.cpp",
     "WebCore/platform/graphics/win/SimpleFontDataWin.cpp",
@@ -937,8 +971,6 @@ local WEBCORE_SRC_FILES = {
     "WebCore/platform/graphics/ca/win/PlatformCALayerWin.cpp",
     "WebCore/platform/graphics/ca/win/PlatformCALayerWinInternal.cpp",
     "WebCore/platform/graphics/ca/win/WKCACFViewLayerTreeHost.cpp",
-    "WebCore/platform/graphics/avfoundation/MediaPlayerPrivateAVFoundation.cpp",
-    "WebCore/platform/graphics/avfoundation/cf/MediaPlayerPrivateAVFoundationCF.cpp",
     "WebCore/platform/network/AuthenticationChallengeBase.cpp",
     "WebCore/platform/network/BlobData.cpp",
     "WebCore/platform/network/BlobRegistryImpl.cpp",
