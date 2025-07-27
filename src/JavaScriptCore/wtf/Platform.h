@@ -802,16 +802,6 @@
 #endif
 
 #define ENABLE_DEBUG_WITH_BREAKPOINT 0
-#define ENABLE_SAMPLING_COUNTERS 0
-#define ENABLE_SAMPLING_FLAGS 0
-#define ENABLE_OPCODE_SAMPLING 0
-#define ENABLE_CODEBLOCK_SAMPLING 0
-#if ENABLE(CODEBLOCK_SAMPLING) && !ENABLE(OPCODE_SAMPLING)
-#error "CODEBLOCK_SAMPLING requires OPCODE_SAMPLING"
-#endif
-#if ENABLE(OPCODE_SAMPLING) || ENABLE(SAMPLING_FLAGS)
-#define ENABLE_SAMPLING_THREAD 1
-#endif
 
 #if !defined(ENABLE_GEOLOCATION)
 #define ENABLE_GEOLOCATION 0
@@ -897,12 +887,6 @@
 
 #if !defined(ENABLE_SIMPLE_HEAP_PROFILING)
 #define ENABLE_SIMPLE_HEAP_PROFILING 0
-#endif
-
-/* Counts uses of write barriers using sampling counters. Be sure to also
-   set ENABLE_SAMPLING_COUNTERS to 1. */
-#if !defined(ENABLE_WRITE_BARRIER_PROFILING)
-#define ENABLE_WRITE_BARRIER_PROFILING 0
 #endif
 
 /* Ensure that either the JIT or the interpreter has been enabled. */
