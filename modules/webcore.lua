@@ -586,9 +586,7 @@ function makeHTMLElementFactory(ctx)
         "ENABLE_DETAILS",
         "ENABLE_METER_TAG",
         "ENABLE_MICRODATA",
-        "ENABLE_PROGRESS_TAG",
-        "ENABLE_VIDEO",
-        "ENABLE_VIDEO_TRACK"
+        "ENABLE_PROGRESS_TAG"
     }
     for _, define in ipairs(checkDefines) do
         if (defineHas[define] == 1) then
@@ -846,7 +844,6 @@ function makeJSBinding(ctx, inputs)
         "plugins",
         "storage",
         "xml",
-        "webaudio",
         "workers",
         "websockets"
     }
@@ -892,10 +889,6 @@ function generateAll(ctx)
     }
     if (defineHas["ENABLE_MATHML"] == 1) then
         table.insert(UserAgentStyleSheetsInput, WebCoreDir.."css/mathml.css")
-    end
-    if (defineHas["ENABLE_VIDEO"] == 1) then
-        table.insert(UserAgentStyleSheetsInput, WebCoreDir.."css/mediaControls.css")
-        table.insert(UserAgentStyleSheetsInput, WebCoreDir.."css/mediaControlsQuickTime.css")
     end
     if (defineHas["ENABLE_FULLSCREEN_API"] == 1) then
         table.insert(UserAgentStyleSheetsInput, WebCoreDir.."css/fullscreen.css")
