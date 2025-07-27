@@ -20,8 +20,10 @@
 #include "config.h"
 #include "Page.h"
 
+#if ENABLE(HISTORY)
 #include "BackForwardController.h"
 #include "BackForwardList.h"
+#endif
 #include "Base64.h"
 #include "CSSStyleSelector.h"
 #include "Chrome.h"
@@ -46,7 +48,9 @@
 #include "FrameTree.h"
 #include "FrameView.h"
 #include "HTMLElement.h"
+#if ENABLE(HISTORY)
 #include "HistoryItem.h"
+#endif
 #include "InspectorController.h"
 #include "InspectorInstrumentation.h"
 #include "Logging.h"
@@ -142,7 +146,9 @@ Page::Page(PageClients& pageClients)
 #endif
     , m_settings(adoptPtr(new Settings(this)))
     , m_progress(adoptPtr(new ProgressTracker))
+#if ENABLE(HISTORY)
     , m_backForwardController(adoptPtr(new BackForwardController(this, pageClients.backForwardClient)))
+#endif
     , m_theme(RenderTheme::themeForPage(this))
     , m_editorClient(pageClients.editorClient)
     , m_frameCount(0)
@@ -207,7 +213,9 @@ Page::~Page()
     m_inspectorController->inspectedPageDestroyed();
 #endif
 
+#if ENABLE(HISTORY)
     backForward()->close();
+#endif
 
 #ifndef NDEBUG
     pageCounter.decrement();
@@ -269,6 +277,7 @@ void Page::setOpenedByDOM()
     m_openedByDOM = true;
 }
 
+#if ENABLE(HISTORY)
 BackForwardList* Page::backForwardList() const
 {
     return m_backForwardController->client();
@@ -277,7 +286,7 @@ BackForwardList* Page::backForwardList() const
 bool Page::goBack()
 {
     HistoryItem* item = backForward()->backItem();
-    
+
     if (item) {
         goToItem(item, FrameLoadTypeBack);
         return true;
@@ -288,7 +297,7 @@ bool Page::goBack()
 bool Page::goForward()
 {
     HistoryItem* item = backForward()->forwardItem();
-    
+
     if (item) {
         goToItem(item, FrameLoadTypeForward);
         return true;
@@ -315,7 +324,7 @@ void Page::goBackOrForward(int distance)
     HistoryItem* item = backForward()->itemAtIndex(distance);
     if (!item) {
         if (distance > 0) {
-            if (int forwardCount = backForward()->forwardCount()) 
+            if (int forwardCount = backForward()->forwardCount())
                 item = backForward()->itemAtIndex(forwardCount);
         } else {
             if (int backCount = backForward()->backCount())
@@ -346,6 +355,7 @@ int Page::getHistoryLength()
 {
     return backForward()->backCount() + 1 + backForward()->forwardCount();
 }
+#endif
 
 void Page::setGroupName(const String& name)
 {
@@ -659,7 +669,9 @@ void Page::setDeviceScaleFactor(float scaleFactor)
     for (Frame* frame = mainFrame(); frame; frame = frame->tree()->traverseNext())
         frame->editor()->deviceScaleFactorChanged();
 
+#if ENABLE(HISTORY)
     backForward()->markPagesForFullStyleRecalc();
+#endif
 }
 
 void Page::didMoveOnscreen()

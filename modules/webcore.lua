@@ -814,7 +814,6 @@ function generateJSBinding(ctx, input)
         "css",
         "p2p",
         "page",
-        "notifications",
         "xml",
     }) do
         table.insert(args, "--include")
@@ -838,7 +837,6 @@ function makeJSBinding(ctx, inputs)
         "html",
         "html/canvas",
         "loader/appcache",
-        "notifications",
         "p2p",
         "page",
         "plugins",
@@ -978,11 +976,8 @@ function copyHeaders(ctx)
         { "loader/archive/cf/*.h","include/WebCore"},
         { "loader/cache/*.h","include/WebCore"},
         { "loader/icon/*.h","include/WebCore"},
-        { "history/*.h","include/WebCore"},
-        { "history/cf/*.h","include/WebCore"},
         { "html/*.h","include/WebCore"},
         { "html/parser/*.h","include/WebCore"},
-        { "notifications/*.h","include/WebCore"},
         { "css/*.h","include/WebCore"},
         { "platform/*.h","include/WebCore"},
         { "platform/cf/*.h","include/WebCore"},

@@ -26,7 +26,9 @@
 #include "config.h"
 #include "Settings.h"
 
+#if ENABLE(HISTORY)
 #include "BackForwardController.h"
+#endif
 #include "CachedResourceLoader.h"
 #include "CookieStorage.h"
 #include "DOMTimer.h"
@@ -555,8 +557,9 @@ void Settings::setUsesPageCache(bool usesPageCache)
 {
     if (m_usesPageCache == usesPageCache)
         return;
-        
+
     m_usesPageCache = usesPageCache;
+#if ENABLE(HISTORY)
     if (!m_usesPageCache) {
         int first = -m_page->backForward()->backCount();
         int last = m_page->backForward()->forwardCount();
@@ -564,6 +567,7 @@ void Settings::setUsesPageCache(bool usesPageCache)
             pageCache()->remove(m_page->backForward()->itemAtIndex(i));
         pageCache()->releaseAutoreleasedPagesNow();
     }
+#endif
 }
 
 void Settings::setShrinksStandaloneImagesToFit(bool shrinksStandaloneImagesToFit)
