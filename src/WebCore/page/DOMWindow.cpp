@@ -984,8 +984,13 @@ void DOMWindow::close(ScriptExecutionContext* context)
     Settings* settings = m_frame->settings();
     bool allowScriptsToCloseWindows = settings && settings->allowScriptsToCloseWindows();
 
+#if ENABLE(HISTORY)
     if (!(page->openedByDOM() || page->backForward()->count() <= 1 || allowScriptsToCloseWindows))
         return;
+#else
+    if (!(page->openedByDOM() || allowScriptsToCloseWindows))
+        return;
+#endif
 
     if (!m_frame->loader()->shouldClose())
         return;

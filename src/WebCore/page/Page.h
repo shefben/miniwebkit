@@ -46,8 +46,11 @@ namespace JSC {
 
 namespace WebCore {
 
+#if ENABLE(HISTORY)
     class BackForwardController;
     class BackForwardList;
+    class HistoryItem;
+#endif
     class Chrome;
     class ChromeClient;
     class ContextMenuClient;
@@ -67,7 +70,6 @@ namespace WebCore {
     class GeolocationClient;
     class GeolocationController;
     class HaltablePlugin;
-    class HistoryItem;
     class InspectorClient;
     class InspectorController;
     class MediaCanStartListener;
@@ -116,7 +118,9 @@ namespace WebCore {
             GeolocationClient* geolocationClient;
             DeviceMotionClient* deviceMotionClient;
             DeviceOrientationClient* deviceOrientationClient;
+#if ENABLE(HISTORY)
             RefPtr<BackForwardList> backForwardClient;
+#endif
             SpeechInputClient* speechInputClient;
             MediaStreamClient* mediaStreamClient;
             float pageScaleFactor;
@@ -146,6 +150,7 @@ namespace WebCore {
         bool openedByDOM() const;
         void setOpenedByDOM();
 
+#if ENABLE(HISTORY)
         // DEPRECATED. Use backForward() instead of the following 6 functions.
         BackForwardList* backForwardList() const;
         bool goBack();
@@ -155,6 +160,7 @@ namespace WebCore {
         int getHistoryLength();
 
         void goToItem(HistoryItem*, FrameLoadType);
+#endif
 
         void setGroupName(const String&);
         const String& groupName() const;
@@ -193,7 +199,9 @@ namespace WebCore {
 #endif
         Settings* settings() const { return m_settings.get(); }
         ProgressTracker* progress() const { return m_progress.get(); }
+#if ENABLE(HISTORY)
         BackForwardController* backForward() const { return m_backForwardController.get(); }
+#endif
 
         enum ViewMode {
             ViewModeInvalid,
@@ -358,8 +366,9 @@ namespace WebCore {
 #endif
         OwnPtr<Settings> m_settings;
         OwnPtr<ProgressTracker> m_progress;
-        
+#if ENABLE(HISTORY)
         OwnPtr<BackForwardController> m_backForwardController;
+#endif
         RefPtr<Frame> m_mainFrame;
 
         mutable RefPtr<PluginData> m_pluginData;

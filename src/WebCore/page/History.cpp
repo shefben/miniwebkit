@@ -26,6 +26,7 @@
 #include "config.h"
 #include "History.h"
 
+#if ENABLE(HISTORY)
 #include "BackForwardController.h"
 #include "Document.h"
 #include "ExceptionCode.h"
@@ -143,3 +144,4 @@ void History::stateObjectAdded(PassRefPtr<SerializedScriptValue> data, const Str
 }
 
 } // namespace WebCore
+#endif
