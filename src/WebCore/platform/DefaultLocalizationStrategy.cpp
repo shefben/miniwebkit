@@ -718,19 +718,6 @@ String DefaultLocalizationStrategy::allFilesText()
 
 #endif
 
-#if PLATFORM(MAC)
-
-String DefaultLocalizationStrategy::builtInPDFPluginName()
-{
-    // Also exposed to DOM.
-    return WEB_UI_STRING("WebKit built-in PDF", "Pseudo plug-in name, visible in Installed Plug-ins page in Safari.");
-}
-
-String DefaultLocalizationStrategy::pdfDocumentTypeDescription()
-{
-    // Also exposed to DOM.
-    return WEB_UI_STRING("Portable Document Format", "Description of the (only) type supported by PDF pseudo plug-in. Visible in Installed Plug-ins page in Safari.");
-}
 
 String DefaultLocalizationStrategy::keygenMenuItem512()
 {

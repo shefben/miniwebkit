@@ -889,8 +889,6 @@ function copyHeaders(ctx)
 
     local copyFiles = {
         { "config.h","include/WebCore"},
-        { "accessibility/*.h","include/WebCore"},
-        { "accessibility/win/*.h","include/WebCore"},
         { "loader/*.h","include/WebCore"},
         { "loader/appcache/*.h","include/WebCore"},
         { "loader/archive/*.h","include/WebCore"},
