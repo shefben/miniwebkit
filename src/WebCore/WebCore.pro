@@ -3548,25 +3548,6 @@ contains(DEFINES, ENABLE_SVG=1) {
    }
 }
 
-contains(DEFINES, ENABLE_JAVASCRIPT_DEBUGGER=1) {
-    v8 {
-        SOURCES += \
-            bindings/v8/ScriptDebugServer.cpp \
-            bindings/v8/ScriptProfiler.cpp \
-            bindings/v8/ScriptHeapSnapshot.cpp \
-            bindings/v8/JavaScriptCallFrame.cpp \
-            bindings/v8/custom/V8ScriptProfileCustom.cpp \
-            bindings/v8/custom/V8JavaScriptCallFrameCustom.cpp \
-            bindings/v8/custom/V8ScriptProfileNodeCustom.cpp \
-            bindings/v8/ScriptProfileNode.cpp \
-            bindings/v8/ScriptProfile.cpp
-    } else {
-        SOURCES += \
-            bindings/js/JSJavaScriptCallFrameCustom.cpp \
-            bindings/js/ScriptProfiler.cpp \
-            bindings/js/JavaScriptCallFrame.cpp
-    }
-}
 
 contains(DEFINES, ENABLE_VIDEO_TRACK=1) {
 

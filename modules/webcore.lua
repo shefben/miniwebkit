@@ -876,7 +876,6 @@ function makeJSBinding(ctx, inputs)
     local vpath = {
         "",
         "bindings/generic",
-        "bindings/js",
         "bindings/objc",
         "css",
         "dom",
@@ -1071,7 +1070,6 @@ function copyHeaders(ctx)
         { "platform/sql/*.h","include/WebCore"},
         { "platform/cairo/cairo/src/*.h","include/WebCore"},
         { "bindings/*.h","include/WebCore"},
-        { "bindings/js/*.h","include/WebCore"},
         { "page/*.h","include/WebCore"},
         { "page/animation/*.h","include/WebCore"},
         { "page/win/*.h","include/WebCore"},

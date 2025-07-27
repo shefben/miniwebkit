@@ -166,12 +166,6 @@ endif # END ENABLE_PROGRESS_TAG
 # ----
 # JavaScript Debugger/Profiler
 # ----
-if ENABLE_JAVASCRIPT_DEBUGGER
-FEATURE_DEFINES += ENABLE_JAVASCRIPT_DEBUGGER=1
-webcore_cppflags += -DENABLE_JAVASCRIPT_DEBUGGER=1
-else
-webcore_cppflags += -DENABLE_JAVASCRIPT_DEBUGGER=0
-endif # END ENABLE_JAVASCRIPT_DEBUGGER
 
 # ----
 # Gamepad support

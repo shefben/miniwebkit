@@ -45,11 +45,6 @@ module window {
         [CustomArgumentHandling] void count();
         [CustomArgumentHandling] void markTimeline();
 
-#if defined(ENABLE_JAVASCRIPT_DEBUGGER) && ENABLE_JAVASCRIPT_DEBUGGER
-        readonly attribute [CustomGetter] Array profiles;
-        [Custom] void profile(in DOMString title);
-        [Custom] void profileEnd(in DOMString title);
-#endif
 
         void time(in [ConvertUndefinedOrNullToNullString,Optional=CallWithDefaultValue] DOMString title);
         [CustomArgumentHandling] void timeEnd(in [ConvertUndefinedOrNullToNullString] DOMString title);
