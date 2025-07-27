@@ -17,7 +17,6 @@
 #include <WebCore/NotificationPresenter.h>
 #include <CommDlg.h>
 
-#include "wkeDebug.h"
 #include "wkePopupMenu.h"
 #include "wkeWebView.h"
 

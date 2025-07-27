@@ -393,34 +393,7 @@ typedef void      (WKE_CALL *wkeLoadingFinishCallback)(wkeWebView* webView, void
 WKE_API void        WKE_CALL wkeOnLoadingFinish(wkeWebView* webView, wkeLoadingFinishCallback callback, void* param);
 
 
-typedef enum
-{
-    WKE_WINDOW_TYPE_POPUP,
-    WKE_WINDOW_TYPE_TRANSPARENT,
-    WKE_WINDOW_TYPE_CONTROL
 
-} wkeWindowType;
-
-WKE_API wkeWebView*  WKE_CALL wkeCreateWebWindow(wkeWindowType type, void* parent, int x, int y, int width, int height);
-WKE_API void        WKE_CALL wkeDestroyWebWindow(wkeWebView* webWindow);
-WKE_API void*       WKE_CALL wkeGetWindowHandle(wkeWebView* webWindow);
-
-typedef bool      (WKE_CALL *wkeWindowClosingCallback)(wkeWebView* webWindow, void* param);
-WKE_API void        WKE_CALL wkeOnWindowClosing(wkeWebView* webWindow, wkeWindowClosingCallback callback, void* param);
-
-typedef void      (WKE_CALL *wkeWindowDestroyCallback)(wkeWebView* webWindow, void* param);
-WKE_API void        WKE_CALL wkeOnWindowDestroy(wkeWebView* webWindow, wkeWindowDestroyCallback callback, void* param);
-
-
-WKE_API void        WKE_CALL wkeShowWindow(wkeWebView* webWindow, bool show);
-WKE_API void        WKE_CALL wkeEnableWindow(wkeWebView* webWindow, bool enable);
-
-WKE_API void        WKE_CALL wkeMoveWindow(wkeWebView* webWindow, int x, int y, int width, int height);
-WKE_API void        WKE_CALL wkeMoveToCenter(wkeWebView* webWindow);
-WKE_API void        WKE_CALL wkeResizeWindow(wkeWebView* webWindow, int width, int height);
-
-WKE_API void        WKE_CALL wkeSetWindowTitle(wkeWebView* webWindow, const utf8* title);
-WKE_API void        WKE_CALL wkeSetWindowTitleW(wkeWebView* webWindow, const wchar_t* title);
 
 
 /***JavaScript Bind***/
