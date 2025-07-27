@@ -56,7 +56,6 @@ FrameLoaderClient::FrameLoaderClient(CWebView* webView, WebCore::Page* page)
 
 void FrameLoaderClient::frameLoaderDestroyed()
 {
-    dbgMsg(L"frameLoaderDestroyed\n");
     delete this;
 }
 
@@ -450,7 +449,6 @@ void FrameLoaderClient::willChangeTitle(WebCore::DocumentLoader*)
 
 void FrameLoaderClient::startDownload(const WebCore::ResourceRequest&, const String& suggestedName /*= String()*/)
 {
-    dbgMsg(L"startDownload\n");
 }
 
 void FrameLoaderClient::setMainFrameDocumentReady(bool)
