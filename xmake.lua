@@ -1636,7 +1636,6 @@ target("WebCore")
         "include/WebCore/ForwardingHeaders/parser",
         "include/WebCore/ForwardingHeaders/runtime",
         "include/WebCore/ForwardingHeaders/masm",
-        "include/WebCore/ForwardingHeaders/profiler",
         "include/WebCore/ForwardingHeaders/heap",
         "include/WebCore/ForwardingHeaders/wtf",
         "include/WebCore/ForwardingHeaders/wtf/dtoa",
