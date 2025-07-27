@@ -59,10 +59,7 @@ SET(WebCore_INCLUDE_DIRECTORIES
     "${WEBCORE_DIR}/svg/graphics/filters"
     "${WEBCORE_DIR}/svg/properties"
     "${WEBCORE_DIR}/webaudio"
-    "${WEBCORE_DIR}/websockets"
     "${WEBCORE_DIR}/workers"
-    "${WEBCORE_DIR}/xml"
-    "${WEBCORE_DIR}/xml/parser"
     "${JAVASCRIPTCORE_DIR}"
     "${JAVASCRIPTCORE_DIR}/ForwardingHeaders"
     "${JAVASCRIPTCORE_DIR}/API"
@@ -389,18 +386,6 @@ SET(WebCore_IDL_FILES
     webaudio/LowPass2FilterNode.idl
     webaudio/RealtimeAnalyserNode.idl
 
-    xml/DOMParser.idl
-    xml/XMLHttpRequest.idl
-    xml/XMLHttpRequestException.idl
-    xml/XMLHttpRequestProgressEvent.idl
-    xml/XMLHttpRequestUpload.idl
-    xml/XMLSerializer.idl
-    xml/XPathEvaluator.idl
-    xml/XPathException.idl
-    xml/XPathExpression.idl
-    xml/XPathNSResolver.idl
-    xml/XPathResult.idl
-    xml/XSLTProcessor.idl
 )
 
 SET(WebCore_SOURCES
@@ -1367,38 +1352,7 @@ SET(WebCore_SOURCES
     storage/StorageSyncManager.cpp
     storage/StorageTracker.cpp
 
-    xml/DOMParser.cpp
-    xml/NativeXPathNSResolver.cpp
-    xml/XMLErrors.cpp
-    xml/XMLHttpRequest.cpp
-    xml/XMLHttpRequestProgressEventThrottle.cpp
-    xml/XMLHttpRequestUpload.cpp
-    xml/XMLTreeViewer.cpp
-    xml/XMLSerializer.cpp
-    xml/XPathEvaluator.cpp
-    xml/XPathExpression.cpp
-    xml/XPathExpressionNode.cpp
-    xml/XPathFunctions.cpp
-    xml/XPathNSResolver.cpp
-    xml/XPathNodeSet.cpp
-    xml/XPathParser.cpp
-    xml/XPathPath.cpp
-    xml/XPathPredicate.cpp
-    xml/XPathResult.cpp
-    xml/XPathStep.cpp
-    xml/XPathUtil.cpp
-    xml/XPathValue.cpp
-    xml/XPathVariableReference.cpp
-    xml/XSLImportRule.cpp
-    xml/XSLStyleSheetLibxslt.cpp
-    xml/XSLTExtensions.cpp
-    xml/XSLTProcessor.cpp
-    xml/XSLTProcessorLibxslt.cpp
-    xml/XSLTUnicodeSort.cpp
 
-    xml/parser/XMLDocumentParser.cpp
-    xml/parser/XMLDocumentParserLibxml2.cpp
-    xml/parser/XMLDocumentParserScope.cpp
 )
 
 SET(WebCore_CSS_PROPERTY_NAMES
@@ -1981,27 +1935,6 @@ IF (ENABLE_VIDEO)
     )
 ENDIF()
 
-IF (ENABLE_WEB_SOCKETS)
-    LIST(APPEND WebCore_SOURCES
-        websockets/ThreadableWebSocketChannel.cpp
-        websockets/ThreadableWebSocketChannelClientWrapper.cpp
-        websockets/WebSocket.cpp
-        websockets/WebSocketChannel.cpp
-        websockets/WebSocketHandshake.cpp
-        websockets/WebSocketHandshakeRequest.cpp
-        websockets/WebSocketHandshakeResponse.cpp
-    )
-
-    LIST(APPEND WebCore_IDL_FILES
-        websockets/CloseEvent.idl
-        websockets/WebSocket.idl
-    )
-ENDIF ()
-
-IF (ENABLE_WEB_SOCKETS AND ENABLE_WORKERS)
-    LIST(APPEND WebCore_SOURCES
-         websockets/WorkerThreadableWebSocketChannel.cpp
-    )
 ENDIF ()
 
 IF (ENABLE_WORKERS)
@@ -2245,8 +2178,6 @@ LIST(APPEND WebCore_SOURCES ${DERIVED_SOURCES_WEBCORE_DIR}/ColorData.cpp)
 # Generate XMLViewerCSS.h
 ADD_CUSTOM_COMMAND(
     OUTPUT ${DERIVED_SOURCES_WEBCORE_DIR}/XMLViewerCSS.h
-    MAIN_DEPENDENCY xml/XMLViewer.css
-    COMMAND ${PERL_EXECUTABLE} ${WEBCORE_DIR}/inspector/xxd.pl XMLViewer_css ${WEBCORE_DIR}/xml/XMLViewer.css ${DERIVED_SOURCES_WEBCORE_DIR}/XMLViewerCSS.h
     VERBATIM)
 LIST(APPEND WebCore_SOURCES ${DERIVED_SOURCES_WEBCORE_DIR}/XMLViewerCSS.h)
 
@@ -2254,8 +2185,6 @@ LIST(APPEND WebCore_SOURCES ${DERIVED_SOURCES_WEBCORE_DIR}/XMLViewerCSS.h)
 # Generate XMLViewerJS.h
 ADD_CUSTOM_COMMAND(
     OUTPUT ${DERIVED_SOURCES_WEBCORE_DIR}/XMLViewerJS.h
-    MAIN_DEPENDENCY xml/XMLViewer.js
-    COMMAND ${PERL_EXECUTABLE} ${WEBCORE_DIR}/inspector/xxd.pl XMLViewer_js ${WEBCORE_DIR}/xml/XMLViewer.js ${DERIVED_SOURCES_WEBCORE_DIR}/XMLViewerJS.h
     VERBATIM)
 LIST(APPEND WebCore_SOURCES ${DERIVED_SOURCES_WEBCORE_DIR}/XMLViewerJS.h)
 
@@ -2331,7 +2260,6 @@ GENERATE_GRAMMAR(cssyy ${WEBCORE_DIR}/css/CSSGrammar.y ${DERIVED_SOURCES_WEBCORE
 LIST(APPEND WebCore_SOURCES ${DERIVED_SOURCES_WEBCORE_DIR}/CSSGrammar.cpp)
 
 
-GENERATE_GRAMMAR(xpathyy ${WEBCORE_DIR}/xml/XPathGrammar.y ${DERIVED_SOURCES_WEBCORE_DIR}/XPathGrammar.h ${DERIVED_SOURCES_WEBCORE_DIR}/XPathGrammar.cpp)
 LIST(APPEND WebCore_SOURCES ${DERIVED_SOURCES_WEBCORE_DIR}/XPathGrammar.cpp)
 
 
@@ -2369,11 +2297,9 @@ GENERATE_DOM_NAMES(XLink ${WEBCORE_DIR}/svg/xlinkattrs.in)
 LIST(APPEND WebCore_SOURCES ${DERIVED_SOURCES_WEBCORE_DIR}/XLinkNames.cpp)
 
 
-GENERATE_DOM_NAMES(XMLNS ${WEBCORE_DIR}/xml/xmlnsattrs.in)
 LIST(APPEND WebCore_SOURCES ${DERIVED_SOURCES_WEBCORE_DIR}/XMLNSNames.cpp)
 
 
-GENERATE_DOM_NAMES(XML ${WEBCORE_DIR}/xml/xmlattrs.in)
 LIST(APPEND WebCore_SOURCES ${DERIVED_SOURCES_WEBCORE_DIR}/XMLNames.cpp)
 
 ADD_CUSTOM_COMMAND(

@@ -43,12 +43,10 @@ VPATH = \
     $(WebCore)/page \
     $(WebCore)/plugins \
     $(WebCore)/storage \
-    $(WebCore)/xml \
     $(WebCore)/webaudio \
     $(WebCore)/workers \
     $(WebCore)/svg \
     $(WebCore)/testing \
-    $(WebCore)/websockets \
 #
 
 DOM_CLASSES = \
@@ -680,28 +678,6 @@ CSSValueKeywords.h : $(WEBCORE_CSS_VALUE_KEYWORDS) css/makevalues.pl
 
 # --------
 
-# XMLViewer CSS
-
-all : XMLViewerCSS.h
-
-XMLViewerCSS.h : xml/XMLViewer.css
-	perl $(WebCore)/inspector/xxd.pl XMLViewer_css $(WebCore)/xml/XMLViewer.css XMLViewerCSS.h
-
-# --------
-
-# XMLViewer JS
-
-all : XMLViewerJS.h
-
-XMLViewerJS.h : xml/XMLViewer.js
-	perl $(WebCore)/inspector/xxd.pl XMLViewer_js $(WebCore)/xml/XMLViewer.js XMLViewerJS.h
-
-# --------
-
-# HTML entity names
-
-HTMLEntityTable.cpp : html/parser/HTMLEntityNames.in $(WebCore)/html/parser/create-html-entity-table
-	python $(WebCore)/html/parser/create-html-entity-table -o HTMLEntityTable.cpp $(WebCore)/html/parser/HTMLEntityNames.in
 
 # --------
 
@@ -737,15 +713,6 @@ CSSGrammar.cpp : css/CSSGrammar.y
 # XPath grammar
 # NOTE: Older versions of bison do not inject an inclusion guard, so we add one.
 
-XPathGrammar.cpp : xml/XPathGrammar.y $(PROJECT_FILE)
-	bison -d -p xpathyy $< -o $@
-	touch XPathGrammar.cpp.h
-	touch XPathGrammar.hpp
-	echo '#ifndef XPathGrammar_h' > XPathGrammar.h
-	echo '#define XPathGrammar_h' >> XPathGrammar.h
-	cat XPathGrammar.cpp.h XPathGrammar.hpp >> XPathGrammar.h
-	echo '#endif' >> XPathGrammar.h
-	rm -f XPathGrammar.cpp.h XPathGrammar.hpp
 
 # --------
 
@@ -822,11 +789,6 @@ endif
 
 JSHTMLElementWrapperFactory.cpp : HTMLNames.cpp
 
-XMLNSNames.cpp : dom/make_names.pl xml/xmlnsattrs.in
-	perl -I $(WebCore)/bindings/scripts $< --attrs $(WebCore)/xml/xmlnsattrs.in
-
-XMLNames.cpp : dom/make_names.pl xml/xmlattrs.in
-	perl -I $(WebCore)/bindings/scripts $< --attrs $(WebCore)/xml/xmlattrs.in
 
 # --------
 
@@ -895,7 +857,6 @@ IDL_INCLUDES = \
     $(WebCore)/p2p \
     $(WebCore)/page \
     $(WebCore)/notifications \
-    $(WebCore)/xml \
     $(WebCore)/svg
 
 IDL_COMMON_ARGS = $(IDL_INCLUDES:%=--include %) --write-dependencies --outputDir .
