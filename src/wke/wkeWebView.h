@@ -225,7 +225,6 @@ protected:
     friend class DrawClient;
     friend class EditorClient;
     friend class FrameLoaderClient;
-    friend class InspectorClient;
     friend class PlatformStrategies;
 
     OwnPtr<WebCore::Page> m_page;
