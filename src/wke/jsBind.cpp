@@ -16,8 +16,6 @@
 #include <WebCore/Chrome.h>
 #include <WebCore/ChromeClient.h>
 
-#include "wkeDebug.h"
-
 //cexer: 必须包含在后面，因为其中的 wke.h -> windows.h 会定义 max、min，导致 WebCore 内部的 max、min 出现错乱。
 #include "wkeWebView.h"
 
