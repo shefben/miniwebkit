@@ -19,7 +19,6 @@ function findvccl()
     end
     return nil
 end
-
 local vccl = findvccl()
 
 function imap(t, iter)
@@ -316,7 +315,6 @@ function cssyy(ctx)
     print("generate cssyy done")
 end
 
-end
 
 function toPascalCase(s)
     local result = s
@@ -615,8 +613,6 @@ function makeHTMLElementFactory(ctx)
 end
 
 
-end
-
 function makeWebKitFontFamilyNames(ctx)
     local outputDir = ctx.outputDir
     local args = {
@@ -670,7 +666,6 @@ function generateJSBinding(ctx, input)
         "fileapi",
         "html",
         "css",
-        "p2p",
         "page",
     }) do
         table.insert(args, "--include")
@@ -694,13 +689,7 @@ function makeJSBinding(ctx, inputs)
         "html",
         "html/canvas",
         "loader/appcache",
-        "p2p",
         "page",
-        "plugins",
-        "storage",
-
-        "workers",
-
     }
     local srcDir = ctx.srcDir
     for _, f in ipairs(inputs) do
@@ -765,8 +754,6 @@ function generateAll(ctx)
     cssyy(
         ctx
     )
-        ctx
-    )
     makeHTMLEntityTable(
         ctx
     )
@@ -802,8 +789,7 @@ function copyHeaders(ctx)
         "include/WebCore/ForwardingHeaders/wtf/unicode",
         "include/WebCore/ForwardingHeaders/wtf/unicode/icu",
         "include/WebCore/ForwardingHeaders/yarr",
-        "include/WebCore/ForwardingHeaders/interpreter",
-        "include/WebCoreTestSupport"
+        "include/WebCore/ForwardingHeaders/interpreter"
     }
 
     local copyFiles = {
@@ -840,13 +826,10 @@ function copyHeaders(ctx)
         { "page/win/*.h","include/WebCore"},
         { "bridge/*.h","include/WebCore"},
         { "bridge/jsc/*.h","include/WebCore"},
-        { "plugins/*.h","include/WebCore"},
-        { "plugins/win/*.h","include/WebCore"},
         { "rendering/*.h","include/WebCore"},
         { "rendering/style/*.h","include/WebCore"},
         { "editing/*.h","include/WebCore"},
         { "dom/*.h","include/WebCore"},
-        { "workers/*.h","include/WebCore"},
         { "ForwardingHeaders/bindings/*.h","include/WebCore/ForwardingHeaders/bindings"},
         { "ForwardingHeaders/interpreter/*.h", "include/WebCore/ForwardingHeaders/interpreter" },
         { "ForwardingHeaders/parser/*.h","include/WebCore/ForwardingHeaders/parser"},
@@ -858,8 +841,7 @@ function copyHeaders(ctx)
         { "ForwardingHeaders/wtf/text/*.h","include/WebCore/ForwardingHeaders/wtf/text"},
         { "ForwardingHeaders/wtf/unicode/*.h","include/WebCore/ForwardingHeaders/wtf/unicode"},
         { "ForwardingHeaders/wtf/unicode/icu/*.h","include/WebCore/ForwardingHeaders/wtf/unicode/icu"},
-        { "ForwardingHeaders/yarr/*.h","include/WebCore/ForwardingHeaders/yarr"},
-        { "testing/js/WebCoreTestSupport.h","include/WebCoreTestSupport"},
+        { "ForwardingHeaders/yarr/*.h","include/WebCore/ForwardingHeaders/yarr"}
     }
 
     for _, dir in ipairs(dirs) do
